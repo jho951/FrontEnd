@@ -1,3 +1,17 @@
+html:not(.dark) body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+html.dark body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+html.theme-loaded body {
+  visibility: visible;
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
@@ -6,4 +20,5 @@ body {
     color 0.3s ease;
   font-size: 16px;
   line-height: 1.6;
+  visibility: hidden;
 }

@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/context/ThemeContext';
 import '@/style/reset.css';
 import '@/style/theme.css';
 import '@/style/globalStyle.css';
+import Header from '@/component/layout/header/Header';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -30,7 +31,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

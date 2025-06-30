@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/context/ThemeContext';
-import ThemeButton from '@/component/button/themeButton/ThemeButton';
 
+import '@/style/reset.css';
+import '@/style/theme.css';
 import '@/style/globalStyle.css';
 
 const geistSans = Geist({
@@ -28,10 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ThemeProvider>
-          <ThemeButton />
-          {children}
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

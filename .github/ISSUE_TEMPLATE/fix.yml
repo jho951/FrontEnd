@@ -1,4 +1,4 @@
-name: Fix
+name: 코드 및 기능 오류 수정 요청
 description: 기능 오류나 버그 발생 시 사용
 title: "[FIX]  제목을 입력해주세요"
 labels: [FIX]

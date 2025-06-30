@@ -1,4 +1,4 @@
-name: Refactor
+name: 유지보수 요청
 description: 유지보수나 리팩토링 작업 시 사용
 title: "[REFACTOR] 제목을 입력해주세요"
 labels: [REFACTOR]

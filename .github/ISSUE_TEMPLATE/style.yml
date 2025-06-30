@@ -1,0 +1,43 @@
+name: "코드 스타일 개선 요청"
+description: ESLint, Prettier, 코드 구조 등 코드 스타일 관련 이슈를 제안해주세요.
+title: "[Style] "
+labels: [style, enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        👇 아래 항목들을 채워주세요. 코드 스타일 개선을 위한 제안입니다.
+
+  - type: input
+    id: location
+    attributes:
+      label: 📁 관련 파일/위치
+      description: 어떤 파일이나 디렉터리의 스타일이 문제가 되었나요?
+      placeholder: 예: src/components/PostCard.tsx
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: 💡 현재 스타일 문제점
+      description: 현재 어떤 코드 스타일 문제나 불편함이 있는지 설명해주세요.
+      placeholder: 예: 들여쓰기 규칙이 통일되지 않았습니다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: ✅ 제안하는 개선 방향
+      description: 어떤 방식으로 고치면 좋을지 자유롭게 제안해주세요.
+      placeholder: 예: Prettier 설정을 tabWidth: 2로 통일하면 좋겠습니다.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 체크리스트
+      options:
+        - label: 다른 파일에도 동일한 문제가 있을 수 있습니다.
+        - label: Prettier 또는 ESLint 설정 변경이 필요한 사안입니다.
+        - label: 개선 방향에 대한 팀원 의견을 구하고 싶습니다.

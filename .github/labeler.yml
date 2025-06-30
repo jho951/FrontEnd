@@ -1,0 +1,11 @@
+style:
+  - '**/*.css'
+  - '**/*.ts'
+  - '**/*.tsx'
+  - .eslintrc*
+  - .prettierrc*
+
+build:
+  - '**/*.ts'
+  - '**/*.tsx'
+  - next.config.js

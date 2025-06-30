@@ -1,37 +1,45 @@
-name: 🛠 CI | Lint, Format, Type Check, Build
+name: 🔧 CI (Style + Type + Build)
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
 jobs:
-  validate:
-    name: Validate & Type Check
+  lint-and-format:
+    name: 💅 Style Check (ESLint & Prettier)
     runs-on: ubuntu-latest
-
+    if: contains(github.event.pull_request.labels.*.name, 'style') || !github.event.pull_request.labels
     steps:
-      - name: 📦 Checkout code
-        uses: actions/checkout@v3
-
-      - name: ⚙️ Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
 
-      - name: 📥 Install dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: 🧹 Run ESLint
+      - name: Run ESLint
         run: npm run lint
 
-      - name: 🎨 Run Prettier Check
+      - name: Run Prettier Check
         run: npx prettier . --check
 
-      - name: 🔎 TypeScript Type Check
+  type-and-build:
+    name: 🔍 Type Check & Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript 타입 검사
         run: npx tsc --noEmit
 
-      - name: 🔨 Build Next.js App
+      - name: Next.js 빌드
         run: npm run build

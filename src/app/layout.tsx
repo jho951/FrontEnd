@@ -5,7 +5,6 @@ import { ThemeProvider } from '@/context/ThemeContext';
 import '@/style/reset.css';
 import '@/style/theme.css';
 import '@/style/globalStyle.css';
-import ThemeButton from '@/component/button/themeButton/ThemeButton';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

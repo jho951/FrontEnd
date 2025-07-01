@@ -1,3 +1,7 @@
+:root {
+  --z-base: 1000;
+}
+
 html:not(.dark) body {
   background-color: var(--color-bg);
   color: var(--color-text);
@@ -21,4 +25,20 @@ body {
   font-size: 16px;
   line-height: 1.6;
   visibility: hidden;
+}
+
+.header {
+  z-index: var(--z-base);
+}
+
+.hamburger {
+  z-index: calc(var(--z-base) + 502);
+}
+
+.overlay {
+  z-index: calc(var(--z-base) + 500);
+}
+
+.menu {
+  z-index: calc(var(--z-base) + 501);
 }

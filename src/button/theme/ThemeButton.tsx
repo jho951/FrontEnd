@@ -1,9 +1,9 @@
 'use client';
 
-import { useTheme } from '@/context/ThemeContext';
+import { useTheme } from '@/global/context/ThemeContext';
 
-import SunIcon from '@/component/icon/SunIcon';
-import MoonIcon from '@/component/icon/MoonIcon';
+import SunIcon from '@/global/component/icon/SunIcon';
+import MoonIcon from '@/global/component/icon/MoonIcon';
 
 import styles from './ThemeButton.module.css';
 

@@ -1,0 +1,12 @@
+.hamburger {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+}

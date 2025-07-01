@@ -1,12 +1,14 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { ThemeProvider } from '@/context/ThemeContext';
+import { ThemeProvider } from '@/global/context/ThemeContext';
 
-import '@/style/reset.css';
-import '@/style/theme.css';
-import '@/style/globalStyle.css';
-import Header from '@/component/layout/header/Header';
+import Header from '@/header/component/Header';
+
+import '@/global/style/reset.css';
+import '@/global/style/theme.css';
+import '@/global/style/globalStyle.css';
+import ThemeButton from '@/button/theme/ThemeButton';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -33,6 +35,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeProvider>
           <Header />
+
           {children}
         </ThemeProvider>
       </body>

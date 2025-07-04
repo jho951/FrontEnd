@@ -10,6 +10,7 @@ import ClientLayoutWrapper from '@/global/component/wrapper/ClientLayoutWrapper'
 import '@/global/style/reset.css';
 import '@/global/style/theme.css';
 import '@/global/style/globalStyle.css';
+import ThemeButton from '@/button/theme/ThemeButton';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

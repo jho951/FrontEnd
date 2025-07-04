@@ -1,3 +1,16 @@
+:root {
+  --base-z-index: 1000;
+  --base-gap: 16px;
+  --base-radius: 30px;
+  --header-max-width: 900px;
+  --header-padding: 5px 10px 5px 20px;
+  --base-blur: 12px;
+  --shadow: 0 4px 12px rgba(var(--color-black-rgb), 0.1);
+  --transition-duration: 0.3s;
+  --transition-ease: ease-in-out;
+  --header-width: calc(100% - 32px);
+}
+
 html:not(.dark) body {
   background-color: var(--color-bg);
   color: var(--color-text);
@@ -13,7 +26,6 @@ html.theme-loaded body {
 }
 
 body {
-  background-color: var(--color-bg);
   color: var(--color-text);
   transition:
     background-color 0.3s ease,

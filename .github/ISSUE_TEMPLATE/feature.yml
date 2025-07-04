@@ -1,6 +1,6 @@
 name: 새로운 기능 요청
 description: 새로운 기능이나 개선 사항 제안 시 사용
-title: "[FEATURE] 기능 제목을 입력해주세요"
+title: '[FEATURE] 기능 제목을 입력해주세요'
 labels: [FEATURE]
 assignees:
   - jho951

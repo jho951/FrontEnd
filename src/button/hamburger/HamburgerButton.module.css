@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+
+  z-index: var(--base-z-index);
+}
+
+.line {
+  height: 2px;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  border-radius: 5px;
+
+  background-color: currentColor;
+
+  pointer-events: none;
+}

@@ -1,7 +1,7 @@
 .toggleButton {
   border: 1px solid rgba(128, 128, 128, 0.2);
   background: transparent;
-  border-radius: 9999px;
+  border-radius: var(--base-radius);
   padding: 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease;

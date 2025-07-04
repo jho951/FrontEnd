@@ -21,7 +21,7 @@ export default function HeaderWrapper({ adRef }: HeaderProps) {
       <div style={{ height: reached ? headerHeight : 0 }} />
       <header className={styles.container}>
         <AdBanner ref={adRef} />
-        <Header adRef={adRef} />
+        <Header />
       </header>
     </>
   );

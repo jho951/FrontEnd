@@ -5,7 +5,6 @@ import { HEADER_FOOTER_EXCLUDED_PATHS } from '@/global/constant/routes';
 
 import Header from '@/header/component/Header';
 import Footer from '@/footer/component/Footer';
-import { useRef } from 'react';
 
 export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

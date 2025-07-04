@@ -3,11 +3,12 @@
 
   display: inline-flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 
-  align-items: start;
+  border: none;
 
   background-color: transparent;
-  border: none;
 
   transform-origin: top;
   overflow: hidden;

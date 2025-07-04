@@ -5,7 +5,7 @@
 @media (max-width: 700px) {
   .container {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     padding-top: 5px;
 

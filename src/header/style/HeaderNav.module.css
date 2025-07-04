@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   padding-top: 5px;
 
   gap: var(--base-gap);

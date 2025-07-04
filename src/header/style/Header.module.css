@@ -9,14 +9,18 @@
   display: grid;
   grid-template-rows: auto auto;
 
-  background-color: rgba(var(--color-bg-rgb), 0.75);
+  background: linear-gradient(
+    135deg,
+    rgba(var(--color-bg-rgb), 0.95) 10%,
+    rgba(var(--color-bg-rgb), 0.75) 100%
+  );
 
   border-radius: var(--base-radius);
 
   padding: var(--header-padding);
 
   box-shadow: var(--shadow);
-  backdrop-filter: blur(var(--bg-blur));
+  backdrop-filter: blur(var(--base-blur));
 
   z-index: var(--base-z-index);
   transition: all 0.3s ease-in-out;
@@ -29,9 +33,9 @@
   left: 0;
   z-index: calc(var(--base-z-index) - 1);
 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(var(--base-blur));
+  -webkit-backdrop-filter: blur(var(--base-blur));
+  background-color: rgba(var(--color-black-rgb), 0.3);
 
   pointer-events: auto;
 }

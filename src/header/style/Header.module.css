@@ -4,7 +4,8 @@
 
   position: fixed;
   top: 5%;
-  row-gap: 5px;
+  left: 50%;
+  transform: translateX(-50%);
 
   display: grid;
   grid-template-rows: auto auto;

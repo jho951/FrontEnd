@@ -10,7 +10,7 @@ import { useScrollThresholdReached } from '@/header/util/useScrollThresholdReadc
 
 import { useElementHeight } from '@/global/util/useElementHeight';
 
-import styles from '@/banner/AdHeaderWrapper.module.css';
+import styles from '@/layout/style/HeaderWrapper.module.css';
 
 export default function HeaderWrapper({ adRef }: HeaderProps) {
   const headerRef = useRef<HTMLDivElement | null>(null);

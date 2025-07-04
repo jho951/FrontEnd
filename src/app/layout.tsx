@@ -1,7 +1,7 @@
 import React from 'react';
 import Script from 'next/script';
-import type { Metadata } from 'next';
 
+import { siteMetadata } from '@/global/constant/metadata';
 import { ADSENSE_CLIENT_ID } from '@/global/constant/secret';
 import { ThemeProvider } from '@/global/context/ThemeContext';
 import ClientLayoutWrapper from '@/global/component/wrapper/ClientLayoutWrapper';
@@ -9,11 +9,6 @@ import ClientLayoutWrapper from '@/global/component/wrapper/ClientLayoutWrapper'
 import '@/global/style/reset.css';
 import '@/global/style/theme.css';
 import '@/global/style/globalStyle.css';
-
-export const metadata: Metadata = {
-  title: 'My Skill Blog',
-  description: 'my skill blog',
-};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -37,3 +32,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+export const metadata = siteMetadata;

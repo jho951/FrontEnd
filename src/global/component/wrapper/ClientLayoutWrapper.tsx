@@ -3,8 +3,8 @@
 import { usePathname } from 'next/navigation';
 import { HEADER_FOOTER_EXCLUDED_PATHS } from '@/global/constant/routes';
 
-import Header from '@/header/component/Header';
 import Footer from '@/footer/component/Footer';
+import HeaderWrapper from '@/layout/component/HeaderWrapper';
 
 export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -12,7 +12,7 @@ export default function ClientLayoutWrapper({ children }: { children: React.Reac
 
   return (
     <>
-      {shouldRenderLayout && <Header />}
+      {shouldRenderLayout && <HeaderWrapper />}
       {children}
       {shouldRenderLayout && <Footer />}
     </>

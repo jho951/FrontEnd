@@ -1,13 +1,13 @@
 'use client';
 
-import { forwardRef, useEffect } from 'react';
+import { useEffect, useState, forwardRef } from 'react';
 import { ADSENSE_CLIENT_ID, ADSENSE_SLOT_ID } from '@/global/constant/secret';
 
-import styles from '@/banner/style/AdBanner.module.css';
-
 const AdBanner = forwardRef<HTMLDivElement>((props, ref) => {
+  const [hasError, setHasError] = useState(false);
+
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || !ADSENSE_CLIENT_ID) return;
 
     const adElements = document.querySelectorAll('ins.adsbygoogle');
     const needsInit = Array.from(adElements).some(
@@ -19,14 +19,36 @@ const AdBanner = forwardRef<HTMLDivElement>((props, ref) => {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       } catch (error) {
         console.warn('Adsense initialization failed:', error);
+        setHasError(true);
       }
     }
   }, []);
 
-  if (!ADSENSE_CLIENT_ID) return null;
+  if (process.env.NODE_ENV !== 'production') {
+    return (
+      <div
+        ref={ref}
+        style={{
+          height: '100px',
+          width: '100%',
+          backgroundColor: '#f0f0f0',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#666',
+          fontSize: '14px',
+          fontStyle: 'italic',
+        }}
+      >
+        [Ad Placeholder - development mode]
+      </div>
+    );
+  }
+
+  if (!ADSENSE_CLIENT_ID || hasError) return null;
 
   return (
-    <section className={styles.banner} ref={ref} {...props}>
+    <div ref={ref}>
       <ins
         className="adsbygoogle"
         style={{ display: 'block', width: '100%', height: '100px' }}
@@ -35,7 +57,7 @@ const AdBanner = forwardRef<HTMLDivElement>((props, ref) => {
         data-ad-format="auto"
         data-full-width-responsive="true"
       />
-    </section>
+    </div>
   );
 });
 

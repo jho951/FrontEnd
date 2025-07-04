@@ -1,6 +1,6 @@
-type HeaderProps = {
-  adRef?: React.RefObject<HTMLDivElement | null>;
-};
+interface HeaderProps {
+  adOffset: number;
+}
 
 type HeaderMenuOpenProps = {
   isOpen: boolean;

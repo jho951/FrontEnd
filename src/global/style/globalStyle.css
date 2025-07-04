@@ -9,6 +9,15 @@
   --transition-duration: 0.3s;
   --transition-ease: ease-in-out;
   --header-width: calc(100% - 32px);
+  --font-pretendard: 'Pretendard', sans-serif;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/font/Pretendard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 html:not(.dark) body {
@@ -26,6 +35,7 @@ html.theme-loaded body {
 }
 
 body {
+  font-family: var(--font-pretendard);
   color: var(--color-text);
   transition:
     background-color 0.3s ease,

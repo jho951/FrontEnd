@@ -1,7 +1,8 @@
 'use client';
 
-import HamburgerButton from '@/button/hamburger/HamburgerButton';
 import { HeaderMenuOpenProps } from '@/header/type/HeaderType';
+
+import HamburgerButton from '@/button/hamburger/HamburgerButton';
 
 import styles from '@/header/style/MobileHeaderButton.module.css';
 

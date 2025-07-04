@@ -25,17 +25,25 @@ export default function Header({ adRef }: HeaderProps) {
   const isHoverSupported = useIsHoverSupported();
   const { isMobile } = useDeviceType();
 
+  const [isScrolling, setIsScrolling] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [forceVisible, setForceVisible] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setHasScrolled(window.scrollY > 0);
+    let timeout: NodeJS.Timeout;
+
+    const handleScroll = () => {
+      setIsScrolling(true);
+      clearTimeout(timeout);
+
+      timeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 1000);
     };
-    window.addEventListener('scroll', onScroll);
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -57,8 +65,18 @@ export default function Header({ adRef }: HeaderProps) {
       ref={headerRef}
       className={`${styles.header} ${menuOpen && styles.open}`}
       initial={false}
-      animate={shouldShowHeader ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-      transition={{ duration: 0.3 }}
+      animate={shouldShowHeader ? { y: 0 } : { y: -20 }}
+      transition={{
+        opacity: {
+          duration: isScrolling ? 0.8 : 1.2,
+          ease: 'easeInOut',
+        },
+        y: {
+          duration: 0.3,
+          ease: 'easeInOut',
+        },
+      }}
+      style={{ opacity: isScrolling ? 0.1 : 1 }}
     >
       <div className={styles.topRow}>
         <Logo />

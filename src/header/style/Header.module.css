@@ -1,32 +1,31 @@
 .header {
-  width: 100%;
-  height: 80px;
+  width: var(--header-width);
+  max-width: var(--header-max-width);
 
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 5%;
+  row-gap: 5px;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: auto auto;
 
-  backdrop-filter: blur(0);
-  background-color: transparent;
-  box-shadow: none;
+  background-color: rgba(var(--color-bg-rgb), 0.75);
 
-  padding: 0 2rem;
+  border-radius: var(--base-radius);
 
-  transition:
-    height 0.3s ease,
-    backdrop-filter 0.3s ease,
-    background-color 0.3s ease,
-    box-shadow 0.3s ease;
+  padding: var(--header-padding);
+
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(var(--bg-blur));
+
+  z-index: var(--base-z-index);
+  transition: all 0.3s ease-in-out;
 }
 
-.scrolled {
-  height: 60px;
-  backdrop-filter: blur(12px);
-  background-color: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+.topRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  gap: var(--base-gap);
 }

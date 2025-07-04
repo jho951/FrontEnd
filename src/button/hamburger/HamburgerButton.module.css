@@ -1,28 +1,19 @@
-.hamburger {
+.container {
   position: relative;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border: none;
-
-  background: transparent;
-
-  padding: 0;
-  cursor: pointer;
+  z-index: var(--base-z-index);
 }
 
 .line {
+  height: 2px;
+
   position: absolute;
   left: 0;
+  right: 0;
 
-  width: 100%;
-  height: 3px;
+  border-radius: 5px;
 
-  background-color: var(--color-text);
-  border-radius: 2px;
+  background-color: currentColor;
 
-  transform-origin: center;
-  transition: background-color 0.3s;
+  pointer-events: none;
 }

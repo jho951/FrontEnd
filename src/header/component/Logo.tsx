@@ -1,13 +1,14 @@
 import Link from 'next/link';
+
 import LogoIcon from '@/global/component/icon/LogoIcon';
 
-import styles from '@/global/component/logo/Logo.module.css';
+import styles from '@/header/style/Logo.module.css';
 
 const Logo = () => {
   return (
-    <Link href="/" className={styles.logo}>
+    <Link className={styles.logo} href="/">
       <LogoIcon />
-      <h1 className={styles.text}>Skill Blog</h1>
+      <h1 className={styles.description}>Skill Blog</h1>
     </Link>
   );
 };

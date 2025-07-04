@@ -1,5 +1,14 @@
 :root {
-  --z-base: 1000;
+  --base-z-index: 1000;
+  --base-gap: 16px;
+  --base-radius: 30px;
+  --header-max-width: 900px;
+  --header-padding: 5px 10px 5px 20px;
+  --bg-blur: 12px;
+  --shadow: 0 4px 12px rgba(var(--color-black-rgb), 0.1);
+  --transition-duration: 0.3s;
+  --transition-ease: ease-in-out;
+  --header-width: calc(100% - 32px);
 }
 
 html:not(.dark) body {
@@ -17,7 +26,6 @@ html.theme-loaded body {
 }
 
 body {
-  background-color: var(--color-bg);
   color: var(--color-text);
   transition:
     background-color 0.3s ease,
@@ -25,20 +33,4 @@ body {
   font-size: 16px;
   line-height: 1.6;
   visibility: hidden;
-}
-
-.header {
-  z-index: var(--z-base);
-}
-
-.hamburger {
-  z-index: calc(var(--z-base) + 502);
-}
-
-.overlay {
-  z-index: calc(var(--z-base) + 500);
-}
-
-.menu {
-  z-index: calc(var(--z-base) + 501);
 }

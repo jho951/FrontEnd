@@ -1,10 +1,3 @@
-const HEADER_NAV_LINK = [
-  { href: '/about', label: 'About' },
-  { href: '/posts', label: 'Posts' },
-  { href: '/tags', label: 'Tags' },
-  { href: '/contact', label: 'Contact' },
-];
-
 const MENU_VARIANTS = {
   hidden: { opacity: 0, y: 10 },
   visible: (i: number = 0) => ({
@@ -19,4 +12,6 @@ const MENU_VARIANTS = {
   }),
 };
 
-export { HEADER_NAV_LINK, MENU_VARIANTS };
+const SCROLL_DELTA = 5;
+
+export { MENU_VARIANTS, SCROLL_DELTA };

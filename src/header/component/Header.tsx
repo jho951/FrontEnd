@@ -1,61 +1,71 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, useAnimation, AnimatePresence } from 'framer-motion';
-import clsx from 'clsx';
+import { useEffect, useRef, useState } from 'react';
 
-import useBodyScrollLock from '@/global/util/useBodyScrollLock';
+import { motion } from 'framer-motion';
 
+import Logo from '@/header/component/Logo';
 import HeaderNav from '@/header/component/HeaderNav';
-import MobileMenu from '@/header/component/MobileMenu';
-import HeaderActions from '@/header/component/HeaderActions';
-import { useScrollDirection } from '@/header/util/useScrollDirection';
+import { HeaderProps } from '@/header/type/HeaderType';
+import MobileDropBox from '@/header/component/MobileDropBox';
+import MobileHeaderButton from '@/header/component/MobileHeaderButton';
+import { useScrollThresholdReached } from '@/header/util/useScrollThresholdReadched';
+
+import { useElementHeight } from '@/global/util/useElementHeight';
+import { useDeviceType, useIsHoverSupported } from '@/global/util/useDeviceSupported';
 
 import styles from '@/header/style/Header.module.css';
 
-import Logo from '@/global/component/logo/Logo';
+export default function Header({ adRef }: HeaderProps) {
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const headerHeight = useElementHeight<HTMLDivElement>(headerRef);
+  const adHeight = useElementHeight<HTMLDivElement>(adRef ?? { current: null });
 
-export default function Header() {
-  const controls = useAnimation();
-  const scrollState = useScrollDirection();
+  const reached = useScrollThresholdReached(adHeight + headerHeight);
+  const isHoverSupported = useIsHoverSupported();
+  const { isMobile } = useDeviceType();
 
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useBodyScrollLock(menuOpen);
+  const [forceVisible, setForceVisible] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
-    if (scrollState.hidden) {
-      controls.start({
-        y: -80,
-        opacity: 0,
-        transition: { duration: 0.3 },
-      });
-    } else {
-      controls.start({
-        y: 0,
-        opacity: 1,
-        transition: { type: 'spring', stiffness: 120, damping: 20, duration: 0.3 },
-      });
-    }
-  }, [scrollState.hidden, controls]);
+    const onScroll = () => {
+      setHasScrolled(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!isHoverSupported || isMobile) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const topThreshold = window.innerHeight * 0.01;
+      setForceVisible(e.clientY <= topThreshold);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [isHoverSupported, isMobile]);
+
+  const shouldShowHeader = isMobile || forceVisible || reached || !hasScrolled;
 
   return (
-    <>
-      <motion.header
-        className={clsx(styles.header, {
-          [styles.scrolled]: scrollState.scrolled,
-        })}
-        initial={false}
-        animate={controls}
-      >
+    <motion.section
+      ref={headerRef}
+      className={`${styles.header} ${menuOpen && styles.open}`}
+      initial={false}
+      animate={shouldShowHeader ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className={styles.topRow}>
         <Logo />
         <HeaderNav />
-        <HeaderActions menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      </motion.header>
-
-      <AnimatePresence>
-        {menuOpen && <MobileMenu onClose={() => setMenuOpen(false)} />}
-      </AnimatePresence>
-    </>
+        <MobileHeaderButton isOpen={menuOpen} onClick={() => setMenuOpen(v => !v)} />
+      </div>
+      <MobileDropBox isOpen={menuOpen} onClick={() => setMenuOpen(v => !v)} />
+    </motion.section>
   );
 }

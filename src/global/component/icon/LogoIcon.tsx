@@ -1,62 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import styles from '@/global/component/logo/Logo.module.css';
+import { LogoIconProps } from '@/global/type/IconType';
 
-interface LogoIconProps {
-  size?: number;
-}
-
-export default function LogoIcon({ size }: LogoIconProps) {
-  const fullText = 'hello';
-  const [displayText, setDisplayText] = useState('</>');
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const isMounted = useRef(true);
-
-  const clearTyping = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-  };
-
-  const typeText = (i: number) => {
-    if (i >= fullText.length) return;
-
-    timeoutRef.current = setTimeout(() => {
-      if (!isMounted.current) return;
-      setDisplayText(fullText.slice(0, i + 1));
-      typeText(i + 1);
-    }, 100);
-  };
-
-  const handleMouseEnter = () => {
-    clearTyping();
-    setDisplayText('');
-    typeText(0);
-  };
-
-  const handleMouseLeave = () => {
-    clearTyping();
-    setDisplayText('</>');
-  };
-
-  useEffect(() => {
-    isMounted.current = true;
-    return () => {
-      isMounted.current = false;
-      clearTyping();
-    };
-  }, []);
-
+export default function LogoIcon({ text = '</>' }: LogoIconProps) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 64 64"
-      fill="currentColor"
-      className={`${styles.logoIcon} ${size ? styles.fixed : ''}`}
-      style={size ? { width: size, height: size } : undefined}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="currentColor">
       <rect
         x="8"
         y="12"
@@ -79,7 +25,7 @@ export default function LogoIcon({ size }: LogoIconProps) {
         fontFamily="monospace"
         pointerEvents="none"
       >
-        {displayText}
+        {text}
       </text>
     </svg>
   );

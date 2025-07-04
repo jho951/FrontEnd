@@ -5,9 +5,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <div className={styles.test}>
-          <span>HEADER test</span>
-        </div>
+        <div className={styles.test}></div>
       </main>
     </div>
   );

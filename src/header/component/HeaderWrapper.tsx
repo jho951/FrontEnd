@@ -1,13 +1,16 @@
 'use client';
 
 import { useRef } from 'react';
-import AdBanner from '@/banner/component/AdBanner';
-import Header from '@/header/component/Header';
 
-import styles from './AdHeaderWrapper.module.css';
+import AdBanner from '@/banner/component/AdBanner';
+
+import Header from '@/header/component/Header';
+import { HeaderProps } from '@/header/type/HeaderType';
+import { useScrollThresholdReached } from '@/header/util/useScrollThresholdReadched';
+
 import { useElementHeight } from '@/global/util/useElementHeight';
-import { HeaderProps } from '../type/HeaderType';
-import { useScrollThresholdReached } from '../util/useScrollThresholdReadched';
+
+import styles from '@/banner/AdHeaderWrapper.module.css';
 
 export default function HeaderWrapper({ adRef }: HeaderProps) {
   const headerRef = useRef<HTMLDivElement | null>(null);

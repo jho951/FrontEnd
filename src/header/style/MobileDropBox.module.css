@@ -3,7 +3,8 @@
 
   display: inline-flex;
   flex-direction: column;
-  align-items: flex-start;
+
+  align-items: start;
 
   background-color: transparent;
   border: none;

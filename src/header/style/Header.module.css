@@ -22,6 +22,20 @@
   transition: all 0.3s ease-in-out;
 }
 
+.backdrop {
+  position: fixed;
+  inset: 0;
+  top: 0;
+  left: 0;
+  z-index: calc(var(--base-z-index) - 1);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(0, 0, 0, 0.1);
+
+  pointer-events: auto;
+}
+
 .topRow {
   display: grid;
   grid-template-columns: auto 1fr auto;

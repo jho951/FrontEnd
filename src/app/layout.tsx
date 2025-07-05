@@ -1,10 +1,11 @@
 import React from 'react';
-import Script from 'next/script';
 
-import { siteMetadata } from '@/global/constant/metadata';
-import { ADSENSE_CLIENT_ID } from '@/global/constant/secret';
+import { siteMetadata } from '@/script/constant/metadata';
 import { ThemeProvider } from '@/global/context/ThemeContext';
-import ClientLayoutWrapper from '@/global/component/wrapper/ClientLayoutWrapper';
+
+import AdsenseScript from '@/script/component/AdsenseScript';
+
+import ClientLayoutWrapper from '@/layout/component/ClientLayoutWrapper';
 
 import '@/global/style/reset.css';
 import '@/global/style/theme.css';
@@ -14,15 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
-        {process.env.NODE_ENV === 'production' && ADSENSE_CLIENT_ID && (
-          <Script
-            id="adsense-init"
-            strategy="afterInteractive"
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
-            crossOrigin="anonymous"
-          />
-        )}
+        <AdsenseScript />
       </head>
       <body>
         <ThemeProvider>

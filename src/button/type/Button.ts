@@ -1,5 +1,5 @@
 import { HTMLMotionProps } from 'framer-motion';
-import { AnchorHTMLAttributes, ReactNode } from 'react';
+import { ComponentPropsWithRef, ReactNode } from 'react';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'text';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -11,10 +11,11 @@ interface BaseButtonProps {
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   className?: string;
+  prefetch?: boolean;
 }
 
 export interface ButtonProps extends BaseButtonProps, HTMLMotionProps<'button'> {}
 
-export interface LinkButtonProps extends BaseButtonProps, AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface LinkButtonProps extends BaseButtonProps, ComponentPropsWithRef<'a'> {
   href: string;
 }

@@ -40,7 +40,6 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     setMounted(true);
   }, []);
 
-  // 클래스 적용
   useEffect(() => {
     if (!mounted) return;
     document.documentElement.classList.toggle('dark', theme === 'dark');

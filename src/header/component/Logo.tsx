@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import LogoIcon from '@/global/component/icon/LogoIcon';
+import LogoIcon from '@/icon/constant/logo.svg';
 
 import styles from '@/header/style/Logo.module.css';
 

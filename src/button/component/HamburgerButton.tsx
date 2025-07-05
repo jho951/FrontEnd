@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { HamburgerButtonProps } from '@/button/type/HamburgerButtonProps';
 
-import styles from '@/button/hamburger/HamburgerButton.module.css';
+import styles from '@/button/style/HamburgerButton.module.css';
 
 export default function HamburgerButton({ isOpen, onClick, size = 30 }: HamburgerButtonProps) {
   const lineHeight = 3;

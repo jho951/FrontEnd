@@ -1,33 +1,40 @@
 'use client';
 
+import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 
 import { ButtonProps } from '@/button/type/Button';
 
 import styles from '@/button/style/Button.module.css';
 
-export default function Button({
-  variant = 'primary',
-  size = 'md',
-  isLoading = false,
-  leftIcon,
-  rightIcon,
-  children,
-  className = '',
-  ...rest
-}: ButtonProps) {
-  const classNames = `${styles.button} ${styles[variant]} ${styles[size]} ${isLoading ? styles.loading : ''} ${className}`;
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  {
+    variant = 'primary',
+    size = 'md',
+    isLoading = false,
+    leftIcon,
+    rightIcon,
+    children,
+    className = '',
+    ...rest
+  },
+  ref,
+) {
+  const classNames = `${styles.button} ${styles[variant]} ${styles[size]} ${
+    isLoading ? styles.loading : ''
+  } ${className}`;
 
   return (
     <motion.button
+      ref={ref}
       className={classNames.trim()}
       disabled={isLoading || rest.disabled}
-      {...rest}
       whileTap={{ scale: 0.95 }}
       whileHover={{ scale: 1.02 }}
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: 'spring', stiffness: 200, damping: 18 }}
+      {...rest}
     >
       {isLoading ? (
         <span className={styles.spinner} />
@@ -40,4 +47,7 @@ export default function Button({
       )}
     </motion.button>
   );
-}
+});
+
+Button.displayName = 'Button';
+export default Button;

@@ -1,4 +1,4 @@
-.skipLink {
+.container {
   position: absolute;
   left: -999px;
   top: auto;
@@ -12,7 +12,7 @@
   z-index: 1000;
 
   background-color: var(--color-primary);
-  color: var(--color-black);
+  color: var(--color-white);
   padding: 12px 20px;
   font-size: 14px;
   font-weight: 600;
@@ -27,7 +27,7 @@
     transform 0.3s ease;
 }
 
-.skipLink:focus {
+.container:focus {
   left: 16px;
   top: 16px;
   width: auto;
@@ -42,13 +42,13 @@
   box-shadow: 0 6px 12px rgba(var(--color-black-rgb), 0.15);
 }
 
-:root.dark .skipLink {
+:root.dark .container {
   background-color: var(--color-secondary);
-  color: var(--color-black);
+  color: var(--color-white);
   box-shadow: 0 4px 8px rgba(var(--color-white-rgb), 0.1);
 }
 
-:root.dark .skipLink:focus {
+:root.dark .container:focus {
   outline: 2px solid var(--color-accent);
   box-shadow: 0 6px 12px rgba(var(--color-white-rgb), 0.2);
 }

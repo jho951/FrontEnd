@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { SCROLL_DELTA } from '@/header/constant/HeaderConstant';
+import { SCROLL_DELTA } from '@/header/constant/headerConstant';
 
 export function useScrollDirection() {
   const lastScrollY = useRef(0);

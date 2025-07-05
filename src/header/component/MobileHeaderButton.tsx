@@ -2,7 +2,7 @@
 
 import { HeaderMenuOpenProps } from '@/header/type/HeaderType';
 
-import HamburgerButton from '@/button/hamburger/HamburgerButton';
+import HamburgerButton from '@/button/component/HamburgerButton';
 
 import styles from '@/header/style/MobileHeaderButton.module.css';
 

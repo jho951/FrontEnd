@@ -1,13 +1,12 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { HEADER_FOOTER_EXCLUDED_PATHS } from '@/global/constant/routes';
+import { HEADER_FOOTER_EXCLUDED_PATHS } from '@/header/constant/routes';
 
 import Footer from '@/footer/component/Footer';
 import HeaderWrapper from '@/layout/component/HeaderWrapper';
 
 import SkipNav from '@/navigate/component/SkipNav';
-import AccessibleNav from '@/navigate/component/AccessibleNav';
 
 export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -16,7 +15,6 @@ export default function ClientLayoutWrapper({ children }: { children: React.Reac
   return (
     <>
       <SkipNav />
-      <AccessibleNav />
       {shouldRenderLayout && <HeaderWrapper />}
       {children}
       {shouldRenderLayout && <Footer />}

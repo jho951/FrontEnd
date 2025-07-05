@@ -8,8 +8,8 @@ const HEADER_NAV_LINK = [
 ];
 
 const HEADER_AUTH_LINK = [
-  { id: 1, href: '/signin', label: 'signIn' },
-  { id: 2, href: '/signup', label: 'signUp' },
+  { id: 5, href: '/signin', label: 'signIn' },
+  { id: 6, href: '/signup', label: 'signUp' },
 ];
 
 export { HEADER_FOOTER_EXCLUDED_PATHS, HEADER_NAV_LINK, HEADER_AUTH_LINK };

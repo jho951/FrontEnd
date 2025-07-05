@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { HeaderMenuOpenProps } from '@/header/type/HeaderType';
 
-import LinkButton from '@/button/LinkButton';
+import LinkButton from '@/button/component/LinkButton';
 
-import { HEADER_NAV_LINK } from '@/global/constant/routes';
+import { HEADER_NAV_LINK } from '@/header/constant/routes';
 
 import styles from '@/header/style/MobileDropBox.module.css';
 

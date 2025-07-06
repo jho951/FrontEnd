@@ -5,9 +5,7 @@ import { usePathname } from 'next/navigation';
 
 import LinkButton from '@/components/common/button/LinkButton';
 
-import { AUTH_LINK, NAV_LINK, NOT_AUTH_LINK } from '@/constants';
-
-import { useKeyboard } from '@/hooks';
+import { NAV_LINK, NOT_AUTH_LINK } from '@/constants';
 
 import styles from '@/styles/header/HeaderNav.module.css';
 
@@ -15,15 +13,7 @@ export default function HeaderNav() {
   const pathname = usePathname();
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
-  const navItems = [...NAV_LINK, ...AUTH_LINK];
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
-
-  useKeyboard({
-    itemCount: navItems.length,
-    focusedIndex,
-    setFocusedIndex,
-    orientation: 'horizontal',
-  });
 
   useEffect(() => {
     if (focusedIndex !== null) {

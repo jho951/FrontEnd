@@ -1,15 +1,16 @@
 import React from 'react';
 
-import { siteMetadata } from '@/script/constant/metadata';
-import { ThemeProvider } from '@/global/context/ThemeContext';
+import { siteMetadata } from '@/libs/metadata';
+import { siteViewport } from '@/libs/viewport';
+import { ThemeProvider } from '@/context/ThemeContext';
 
 import AdsenseScript from '@/script/component/AdsenseScript';
 
-import ClientLayoutWrapper from '@/layout/component/ClientLayoutWrapper';
+import ClientLayoutWrapper from '@/layout/ClientLayoutWrapper';
 
-import '@/global/style/reset.css';
-import '@/global/style/theme.css';
-import '@/global/style/globalStyle.css';
+import '@/styles/global.css';
+import '@/styles/theme.css';
+import '@/styles/reset.css';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -27,3 +28,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 
 export const metadata = siteMetadata;
+export const viewport = siteViewport;

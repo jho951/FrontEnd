@@ -1,0 +1,72 @@
+:root {
+  --base-z-index: 1000;
+  --base-gap: 16px;
+  --base-radius: 30px;
+  --header-max-width: 900px;
+  --header-padding: 5px 10px 5px 20px;
+  --base-blur: 12px;
+  --shadow: 0 4px 12px rgba(var(--color-black-rgb), 0.1);
+  --transition-duration: 0.3s;
+  --transition-ease: ease-in-out;
+  --header-width: calc(100% - 32px);
+  --font-pretendard: 'Pretendard', sans-serif;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/font/Pretendard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.focusable:focus-visible {
+  outline: 1px solid var(--color-primary);
+  color: var(--color-text);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+html:not(.dark) body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+html.dark body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+html.theme-loaded body {
+  visibility: visible;
+}
+
+body {
+  font-family: var(--font-pretendard);
+  color: var(--color-text);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  font-size: 16px;
+  line-height: 1.6;
+  visibility: hidden;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

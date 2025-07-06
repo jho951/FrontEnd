@@ -3,11 +3,9 @@
 import React, { FC, SVGProps } from 'react';
 import dynamic from 'next/dynamic';
 
-import type { IconName, IconProps } from '@/types';
+import type { IconName, IconProps, SvgComponent } from '@/types';
 
-type SvgComponent = FC<SVGProps<SVGSVGElement>>;
-
-export const icons: Record<IconName, SvgComponent> = {
+const icons: Record<IconName, FC<SVGProps<SVGSVGElement>>> = {
   logo: dynamic(() => import('@/asserts/logo.svg')) as SvgComponent,
   sun: dynamic(() => import('@/asserts/sun.svg')) as SvgComponent,
   moon: dynamic(() => import('@/asserts/moon.svg')) as SvgComponent,

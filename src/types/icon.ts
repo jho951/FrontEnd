@@ -1,4 +1,4 @@
-import type { SVGProps } from 'react';
+import type { FC, SVGProps } from 'react';
 
 /**
  * 아이콘 이름 목록 (아이콘 객체와 동기화됨)
@@ -13,6 +13,8 @@ const iconKeys = {
  * 아이콘 이름 유니온 타입
  */
 type IconName = keyof typeof iconKeys;
+
+type SvgComponent = FC<SVGProps<SVGSVGElement>>;
 
 /**
  * 공통 SVG 아이콘 Props
@@ -30,4 +32,4 @@ interface LogoIconProps {
   text?: string;
 }
 
-export type { IconName, LogoIconProps, IconProps };
+export type { IconName, LogoIconProps, IconProps, SvgComponent };

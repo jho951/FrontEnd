@@ -1,51 +1,24 @@
 import React from 'react';
-import type { Metadata } from 'next';
-import Script from 'next/script';
-import { Geist, Geist_Mono } from 'next/font/google';
 
-import { ADSENSE_CLIENT_ID } from '@/global/constant/secret';
-import { ThemeProvider } from '@/global/context/ThemeContext';
-import ClientLayoutWrapper from '@/global/component/wrapper/ClientLayoutWrapper';
+import { siteMetadata } from '@/libs/metadata';
+import { siteViewport } from '@/libs/viewport';
+import { ThemeProvider } from '@/context/ThemeContext';
 
-import '@/global/style/reset.css';
-import '@/global/style/theme.css';
-import '@/global/style/globalStyle.css';
-import ThemeButton from '@/button/theme/ThemeButton';
+import AdsenseScript from '@/script/component/AdsenseScript';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
+import ClientLayoutWrapper from '@/components/layout/header/ClientLayoutWrapper';
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
+import '@/styles/global.css';
+import '@/styles/theme.css';
+import '@/styles/reset.css';
 
-export const metadata: Metadata = {
-  title: 'My Skill Blog',
-  description: 'my skill blog',
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
-        {ADSENSE_CLIENT_ID && (
-          <Script
-            id="adsense-init"
-            strategy="afterInteractive"
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
-            crossOrigin="anonymous"
-          />
-        )}
+        <AdsenseScript />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
         <ThemeProvider>
           <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
         </ThemeProvider>
@@ -53,3 +26,6 @@ export default function RootLayout({
     </html>
   );
 }
+
+export const metadata = siteMetadata;
+export const viewport = siteViewport;

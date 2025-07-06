@@ -6,7 +6,7 @@ import { ThemeProvider } from '@/context/ThemeContext';
 
 import AdsenseScript from '@/script/component/AdsenseScript';
 
-import ClientLayoutWrapper from '@/layout/ClientLayoutWrapper';
+import ClientLayoutWrapper from '@/components/layout/header/ClientLayoutWrapper';
 
 import '@/styles/global.css';
 import '@/styles/theme.css';

@@ -8,7 +8,7 @@ import SkipNav from '@/components/common/navigation/SkipNav';
 
 import Footer from '@/components/layout/footer/Footer';
 
-import HeaderWrapper from '@/layout/HeaderWrapper';
+import HeaderWrapper from '@/components/layout/header/HeaderWrapper';
 
 export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

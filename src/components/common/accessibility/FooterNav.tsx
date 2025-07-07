@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { FooterNavProps } from '@/types';
 
-import styles from '@/styles/footer/Footer.module.css';
+import styles from '@/styles/accessibility/FooterNav.module.css';
 
 export default function FooterNav({ title, links, external = false }: FooterNavProps) {
   return (
-    <div className={styles.column}>
+    <div>
       <h3 className={styles.columnTitle}>{title}</h3>
       <ul className={styles.linkList}>
         {links.map(link => {

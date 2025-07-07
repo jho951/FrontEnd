@@ -1,78 +1,29 @@
 .footer {
-  background: var(--color-bg);
-  color: var(--color-text);
-  padding: 4rem 1.5rem;
-  border-top: 1px solid var(--color-gray);
-  font-size: 0.875rem;
+  background-color: #f9f9f9;
+  padding: 3rem 1.5rem;
+  font-size: 14px;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .columns {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+
   gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  margin-bottom: 2rem;
 }
 
-.column {
-  min-width: 140px;
+@media (max-width: 700px) {
+  .footer {
+    padding: 2rem;
+  }
 }
 
-.columnTitle {
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--color-heading);
-  font-size: 0.95rem;
-  text-transform: uppercase;
-}
-
-.linkList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.link {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--color-text);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.link:hover {
-  color: var(--color-accent);
-}
-
-.bottom {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--color-gray);
-  text-align: center;
-}
-
-.languageAndIcons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-  color: var(--color-text);
-}
-
-.icons a {
-  margin: 0 0.5rem;
-  font-size: 1.2rem;
-  color: var(--color-text);
-  transition: color 0.3s;
-}
-
-.icons a:hover {
-  color: var(--color-accent);
-}
-
-.copy {
-  color: var(--color-text);
-  font-size: 0.8rem;
+@media (prefers-color-scheme: dark) {
+  .footer {
+    background-color: #1a1a1a;
+    color: #ccc;
+  }
 }

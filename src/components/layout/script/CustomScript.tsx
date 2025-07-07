@@ -2,10 +2,10 @@
 
 import Script from 'next/script';
 
-const ADSENSE_CLIENT_ID = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+import { ADSENSE_CLIENT_ID, NODE_ENV } from '@/constants';
 
-export default function AdsenseScript() {
-  if (process.env.NODE_ENV !== 'production' || !ADSENSE_CLIENT_ID) return null;
+export default function CustomScript() {
+  if (NODE_ENV !== 'production' || !ADSENSE_CLIENT_ID) return null;
 
   return (
     <Script

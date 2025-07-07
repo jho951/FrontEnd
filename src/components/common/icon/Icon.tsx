@@ -6,9 +6,10 @@ import dynamic from 'next/dynamic';
 import type { IconName, IconProps, SvgComponent } from '@/types';
 
 const icons: Record<IconName, FC<SVGProps<SVGSVGElement>>> = {
-  logo: dynamic(() => import('@/asserts/logo.svg')) as SvgComponent,
   sun: dynamic(() => import('@/asserts/sun.svg')) as SvgComponent,
+  logo: dynamic(() => import('@/asserts/logo.svg')) as SvgComponent,
   moon: dynamic(() => import('@/asserts/moon.svg')) as SvgComponent,
+  arrow: dynamic(() => import('@/asserts/arrow.svg')) as SvgComponent,
 };
 
 export default function Icon({ name, size = 24, className, ...props }: IconProps) {

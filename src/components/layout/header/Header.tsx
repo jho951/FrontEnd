@@ -1,20 +1,21 @@
-'use client';
-
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
-import Logo from '@/components/layout/header/Logo';
-import HeaderNav from '@/components/layout/header/HeaderNav';
-import MobileDropBox from '@/components/layout/header/MobileDropBox';
-import MobileHeaderButton from '@/components/layout/header/MobileHeaderButton';
+import Icon from '@/components/common/icon/Icon';
+import PcNav from '@/components/common/accessibility/PcNav';
+import MobileNav from '@/components/common/accessibility/MobileNav';
+import HamburgerButton from '@/components/common/button/HamburgerButton';
 
-import { useScrollDetect, useScrollLock } from '@/hooks';
+import { useScrollY, useScrollDetect, useScrollLock } from '@/hooks';
 
 import type { HeaderProps } from '@/types';
 
 import styles from '@/styles/header/Header.module.css';
 
 function Header({ adOffset }: HeaderProps) {
+  const scrollY = useScrollY();
+  const isSticky = scrollY > adOffset;
   const [menuOpen, setMenuOpen] = useState(false);
 
   const isScrolling = useScrollDetect(100);
@@ -28,21 +29,32 @@ function Header({ adOffset }: HeaderProps) {
         className={`${styles.header} ${menuOpen && styles.open}`}
         initial={false}
         animate={{ opacity: isScrolling ? 0.15 : 1 }}
-        transition={{
-          opacity: {
-            duration: isScrolling ? 0.4 : 0.8,
-            ease: 'easeInOut',
-          },
+        transition={{ opacity: { duration: isScrolling ? 0.4 : 0.8, ease: 'easeInOut' } }}
+        style={{
+          position: isSticky ? 'fixed' : 'absolute',
+          boxShadow: isSticky ? '0 2px 8px rgba(0, 0, 0, 0.08)' : 'none',
+          top: isSticky ? 0 : adOffset + 10,
         }}
-        style={{ top: adOffset + 10 }}
       >
         <section className={styles.topRow}>
-          <Logo />
-          <HeaderNav />
-          <MobileHeaderButton isOpen={menuOpen} onClick={() => setMenuOpen(v => !v)} tabIndex={0} />
+          <h1>
+            <Link className={styles.logoContainer} href="/" aria-label="홈으로 이동">
+              <Icon name="logo" size={44} />
+              <span className="sr-only">Skill Blog</span>
+            </Link>
+          </h1>
+          <PcNav />
+          <div className={styles.btnContainer}>
+            <HamburgerButton
+              isOpen={menuOpen}
+              size={24}
+              onClick={() => setMenuOpen(v => !v)}
+              tabIndex={0}
+            />
+          </div>
         </section>
 
-        <MobileDropBox isOpen={menuOpen} onClick={() => setMenuOpen(v => !v)} />
+        <MobileNav isOpen={menuOpen} onClick={() => setMenuOpen(v => !v)} />
       </motion.header>
     </>
   );

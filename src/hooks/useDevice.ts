@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
+import { MOBILE_BREAKPOINT } from '@/constants';
+
 /** 마우스 hover 지원 여부 (정적 함수) */
 function isHoverSupported(): boolean {
-  if (typeof window === 'undefined' || !window.matchMedia) return false;
-  return window.matchMedia('(hover: hover)').matches;
+  return typeof window !== 'undefined' && window.matchMedia?.('(hover: hover)').matches;
 }
 
 /** 커스텀 훅: hover 지원 여부 */
@@ -34,36 +35,41 @@ function useIsTouchDevice(): boolean {
   return isTouch;
 }
 
-/** 모바일 디바이스 여부 */
-function isMobileDevice(): boolean {
-  if (typeof navigator === 'undefined') return false;
-
-  const ua = navigator.userAgent || navigator.vendor || (window as any).opera;
-  return /android|iphone|ipad|ipod|windows phone/i.test(ua);
-}
-
-/** 커스텀 훅: 모바일/데스크탑 분기 */
-function useDeviceType(): {
-  isMobile: boolean;
-  isDesktop: boolean;
-} {
+/** 커스텀 훅: 화면 크기 기반 모바일 여부 판단 */
+function useIsMobile(): boolean {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(isMobileDevice());
+    if (typeof window === 'undefined') return;
+
+    const checkMobile = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+
+    checkMobile(); // 최초 체크
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  return isMobile;
+}
+
+/** 통합된 디바이스 정보 제공 훅 */
+function useDeviceType(): {
+  isMobile: boolean;
+  isDesktop: boolean;
+  isTouch: boolean;
+  isHover: boolean;
+} {
+  const isMobile = useIsMobile();
+  const isTouch = useIsTouchDevice();
+  const isHover = useIsHoverSupported();
 
   return {
     isMobile,
     isDesktop: !isMobile,
+    isTouch,
+    isHover,
   };
 }
 
-export {
-  isHoverSupported,
-  useIsHoverSupported,
-  isTouchDevice,
-  useIsTouchDevice,
-  isMobileDevice,
-  useDeviceType,
-};
+export { useIsHoverSupported, useIsTouchDevice, useIsMobile, useDeviceType };

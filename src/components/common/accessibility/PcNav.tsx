@@ -1,5 +1,3 @@
-'use client';
-
 import { useState, useRef, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
@@ -7,9 +5,9 @@ import LinkButton from '@/components/common/button/LinkButton';
 
 import { NAV_LINK, NOT_AUTH_LINK } from '@/constants';
 
-import styles from '@/styles/header/HeaderNav.module.css';
+import styles from '@/styles/accessibility/PcNav.module.css';
 
-export default function HeaderNav() {
+export default function PcNav() {
   const pathname = usePathname();
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
@@ -25,7 +23,7 @@ export default function HeaderNav() {
     <nav className={styles.container} role="navigation" aria-label="주요 사이트 내비게이션">
       <ul role="menubar" className={`${styles.navList} focusable`}>
         {NAV_LINK.map((item, idx) => (
-          <li key={item.id} role="none">
+          <li key={item.id} role="none" className={styles.navItem}>
             <LinkButton
               href={item.href}
               variant="text"
@@ -37,6 +35,25 @@ export default function HeaderNav() {
             >
               {item.label}
             </LinkButton>
+
+            {item.children && (
+              <ul role="menu" className={styles.submenu}>
+                {item.children.map(child => (
+                  <li key={child.href} role="none">
+                    <LinkButton
+                      href={child.href}
+                      variant="text"
+                      className={styles.subLink}
+                      role="menuitem"
+                      tabIndex={0}
+                      aria-current={pathname === child.href ? 'page' : undefined}
+                    >
+                      {child.label}
+                    </LinkButton>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ul>

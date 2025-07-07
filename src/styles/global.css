@@ -3,7 +3,7 @@
   --base-gap: 16px;
   --base-radius: 30px;
   --header-max-width: 900px;
-  --header-padding: 5px 10px 5px 20px;
+  --header-padding: 10px 20px;
   --base-blur: 12px;
   --shadow: 0 4px 12px rgba(var(--color-black-rgb), 0.1);
   --transition-duration: 0.3s;

@@ -17,11 +17,10 @@
 
   padding: var(--header-padding);
 
-  box-shadow: var(--shadow);
   backdrop-filter: blur(var(--base-blur));
 
   z-index: var(--base-z-index);
-  transition: all 0.3s ease-in-out;
+  transition: 'none';
 }
 
 .backdrop {
@@ -42,12 +41,30 @@
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
+}
 
-  gap: var(--base-gap);
+.logoContainer {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.btnContainer {
+  display: none;
 }
 
 @media (max-width: 700px) {
-  .topRow {
-    grid-template-columns: 7fr 1fr;
+  .btnContainer {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .logoContainer {
+    color: var(--color-text);
   }
 }

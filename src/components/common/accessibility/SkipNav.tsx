@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/navigation/SkipNav.module.css';
+import styles from '@/styles/accessibility/SkipNav.module.css';
 
 export default function SkipNav() {
   return (

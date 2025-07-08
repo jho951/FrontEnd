@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useLayoutEffect, useState } from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 function DropdownAnimate({ children }: { children: React.ReactNode }) {

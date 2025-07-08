@@ -8,7 +8,6 @@ jobs:
   lint-and-format:
     name: 💅 Style Check (ESLint & Prettier)
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.labels.*.name, 'style') || !github.event.pull_request.labels
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -20,7 +19,7 @@ jobs:
         run: npm ci
 
       - name: Run ESLint
-        run: npm run lint
+        run: npx eslint .
 
       - name: Run Prettier Check
         run: npx prettier . --check
@@ -39,7 +38,7 @@ jobs:
         run: npm ci
 
       - name: TypeScript 타입 검사
-        run: npx tsc --noEmit
+        run: npm run typecheck
 
       - name: Next.js 빌드
         run: npm run build

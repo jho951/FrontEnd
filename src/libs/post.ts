@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+const matter = require('gray-matter');
 
 export function getAllPosts() {
   const dir = path.join(process.cwd(), 'posts');

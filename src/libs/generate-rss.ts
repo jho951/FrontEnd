@@ -1,5 +1,5 @@
-import { generateRssFeed } from './generateFeed.ts';
-import { getAllPosts } from './post.ts';
+import { getAllPosts } from './post';
+import { generateRssFeed } from './generateFeed';
 
 const posts = getAllPosts();
 

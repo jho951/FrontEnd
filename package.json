@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "generate": "node --import ./register-esbuild.js src/libs/generate-rss.ts",
+    "generate": "tsc src/libs/generate-rss.ts --outDir dist && node dist/libs/generate-rss.js",
     "build": "npm run generate && next build",
     "start": "next start",
     "format": "prettier . --write",
@@ -21,7 +21,6 @@
       "prettier --write"
     ]
   },
-  "type": "module",
   "dependencies": {
     "framer-motion": "^12.19.2",
     "gray-matter": "^4.0.3",
@@ -45,7 +44,6 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/react-i18next": "^7.8.3",
     "@types/rss": "^0.0.32",
     "@types/webpack": "^5.28.5",
     "@typescript-eslint/eslint-plugin": "^8.35.0",

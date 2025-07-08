@@ -1,8 +1,7 @@
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 import RSS from 'rss';
-
-import type { PostItem } from '../types/feed.ts';
+import type { PostItem } from '../types/feed';
 
 export function generateRssFeed(posts: PostItem[]) {
   const siteUrl = 'https://yourdomain.com';

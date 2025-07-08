@@ -17,6 +17,7 @@ const MOBILE_BREAKPOINT = 700;
 const ADSENSE_CLIENT_ID = process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID;
 const ADSENSE_SLOT_ID = process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID;
 const NODE_ENV = process.env.NODE_ENV;
+const COPY = '&copy; 2025 YourCompany, Inc. All rights reserved.';
 
 export {
   MENU_VARIANTS,
@@ -25,4 +26,5 @@ export {
   ADSENSE_CLIENT_ID,
   ADSENSE_SLOT_ID,
   NODE_ENV,
+  COPY,
 };

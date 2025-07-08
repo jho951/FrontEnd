@@ -29,38 +29,44 @@ export default function MobileNav({ isOpen }: HeaderMenuOpenProps) {
         >
           {NAV_LINK.map((item, idx) => (
             <div key={item.id} className={styles.section}>
-              <button
-                className={styles.toggle}
-                onClick={() => toggle(idx)}
-                aria-expanded={openIndex === idx}
-                aria-controls={`mobile-submenu-${idx}`}
-                aria-haspopup="true"
-              >
-                {item.label}
-                {item.children && (
-                  <Icon
-                    className={`${styles.icon} ${openIndex === idx ? styles.open : ''}`}
-                    name="arrow"
-                    size={20}
-                  />
-                )}
-              </button>
+              {item.children ? (
+                <>
+                  <button
+                    className={styles.toggle}
+                    onClick={() => toggle(idx)}
+                    aria-expanded={openIndex === idx}
+                    aria-controls={`mobile-submenu-${idx}`}
+                    aria-haspopup="true"
+                  >
+                    {item.label}
+                    <Icon
+                      className={`${styles.icon} ${openIndex === idx ? styles.open : ''}`}
+                      name="arrow"
+                      size={20}
+                    />
+                  </button>
 
-              <AnimatePresence initial={false}>
-                {item.children && openIndex === idx && (
-                  <DropdownAnimate>
-                    <ul id={`mobile-submenu-${idx}`} className={styles.dropdown}>
-                      {item.children.map(sub => (
-                        <li key={sub.href}>
-                          <Link href={sub.href} className={styles.link}>
-                            {sub.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </DropdownAnimate>
-                )}
-              </AnimatePresence>
+                  <AnimatePresence initial={false}>
+                    {openIndex === idx && (
+                      <DropdownAnimate>
+                        <ul id={`mobile-submenu-${idx}`} className={styles.dropdown}>
+                          {item.children.map(sub => (
+                            <li key={sub.href}>
+                              <Link href={sub.href} className={styles.link}>
+                                {sub.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </DropdownAnimate>
+                    )}
+                  </AnimatePresence>
+                </>
+              ) : (
+                <Link href={item.href ?? '#'} className={styles.link}>
+                  {item.label}
+                </Link>
+              )}
             </div>
           ))}
         </motion.nav>

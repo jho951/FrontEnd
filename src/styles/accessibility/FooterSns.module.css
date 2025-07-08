@@ -1,17 +1,38 @@
 .bottom {
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--color-gray);
   padding-top: 1.5rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 16px;
+
+  gap: 1rem;
+}
+
+.copy {
+  color: var(--color-text);
+  white-space: nowrap;
+  margin: 0;
 }
 
 .languageAndIcons {
   display: flex;
-  justify-content: flex-end;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 2rem;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.languageText {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.languageText span {
+  font-size: 16px;
+}
+
+.languageText svg {
+  color: var(--color-primary);
 }
 
 .icons {
@@ -19,36 +40,27 @@
   gap: 1.2rem;
 }
 
+.icons a {
+  display: flex;
+
+  background: var(--color-secondary);
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.icons a:hover {
+  background: var(--color-accent);
+}
+
 .icons svg {
+  fill: var(--color-text);
   transition: transform 0.3s ease;
 }
 
 .icons svg:hover {
   transform: scale(1.2);
-}
-
-.copy {
-  font-size: 16px;
-  color: #888;
-  text-align: center;
-}
-
-@media (prefers-color-scheme: dark) {
-  .bottom {
-    border-top: 1px solid #444;
-  }
-
-  .copy {
-    color: #777;
-  }
-
-  .icons svg {
-    fill: #ccc;
-  }
-
-  .icons svg:hover {
-    fill: #fff;
-  }
 }
 
 @media (max-width: 700px) {

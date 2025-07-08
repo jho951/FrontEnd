@@ -1,7 +1,22 @@
-import { FooterSection } from '@/types';
+import { FooterSection, SnsLink } from '@/types';
 
 const HEADER_EXCLUDED_PATHS = ['/signin', '/signup'];
 const FOOTER_EXCLUDED_PATHS = ['/signin', '/signup'];
+
+const SNS_LINK: SnsLink[] = [
+  {
+    name: 'RSS',
+    href: '/rss.xml',
+    icon: 'rss',
+    external: true,
+  },
+  {
+    name: 'GitHub',
+    href: 'https://github.com/jho951',
+    icon: 'gitHub',
+    external: true,
+  },
+];
 
 const NAV_LINK = [
   {
@@ -29,10 +44,10 @@ const NAV_LINK = [
 const FOOTER_LINK: FooterSection[] = [
   {
     title: 'Posting',
-    external: false,
+
     links: [
       { label: 'What’s New', href: '/posts/latest' },
-      { label: 'Writing', href: '/write' },
+      { label: 'Writing', href: '/write', target: '_blank' },
       { label: 'Category', href: '/categories' },
       { label: 'Tags', href: '/tags' },
       { label: 'Popular', href: '/posts/popular' },
@@ -40,65 +55,73 @@ const FOOTER_LINK: FooterSection[] = [
   },
   {
     title: 'Community',
-    external: true,
-    links: [
-      { label: 'Contact', href: 'mailto:contact@yourdomain.com' },
-      { label: 'Linked In', href: 'https://www.linkedin.com/company/yourcompany' },
-      { label: 'Slack', href: 'https://yourdomain.slack.com' },
-      { label: 'Discord', href: 'https://discord.gg/yourinvite' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'GitHub', href: 'https://github.com/yourorg' },
-    ],
-  },
-  {
-    title: 'Company',
-    external: false,
-    links: [
-      { label: 'About', href: '/about' },
-      { label: 'Press', href: '/press' },
-      { label: 'Brand Assets', href: '/brand-assets' },
-      { label: 'Affiliate Program', href: '/affiliate' },
-      { label: 'Careers', href: '/careers' },
-    ],
-  },
-  {
-    title: 'Legal',
-    external: true,
-    links: [
-      { label: 'Privacy', href: '/legal/privacy' },
-      { label: 'Terms', href: '/legal/terms' },
-      { label: 'Security', href: '/legal/security' },
-      { label: 'ESG', href: '/legal/esg' },
-      { label: 'Responsible Disclosure', href: '/legal/responsible-disclosure' },
-    ],
-  },
 
+    links: [
+      { label: 'Contact', href: 'mailto:contact@yourdomain.com', target: '_blank' },
+      {
+        label: 'Linked In',
+        href: 'https://www.linkedin.com/company/yourcompany',
+        target: '_blank',
+      },
+      { label: 'Slack', href: 'https://yourdomain.slack.com', target: '_blank' },
+      { label: 'Discord', href: 'https://discord.gg/2TFw8rZD', target: '_blank' },
+      { label: 'Blog', href: '/blog', target: '_blank' },
+      { label: 'GitHub', href: 'https://github.com/jho951', target: '_blank' },
+    ],
+  },
   {
     title: 'Download',
-    external: true,
+
     links: [
       {
         label: 'iPhone',
         href: 'https://apps.apple.com/app/id0000000000',
+        target: '_blank',
       },
       {
         label: 'iPad',
         href: 'https://apps.apple.com/app/id0000000000',
+        target: '_blank',
       },
       {
         label: 'Craft for Android',
         href: 'https://play.google.com/store/apps/details?id=com.yourcompany.craft',
+        target: '_blank',
       },
       {
         label: 'Craft for Mac',
         href: 'https://yourdomain.com/download/mac',
+        target: '_blank',
       },
       {
         label: 'Craft for Windows',
         href: 'https://yourdomain.com/download/windows',
+        target: '_blank',
       },
+    ],
+  },
+
+  {
+    title: 'Legal',
+
+    links: [
+      { label: 'Privacy', href: '/legal/privacy', target: '_blank' },
+      { label: 'Terms', href: '/legal/terms', target: '_blank' },
+      { label: 'Security', href: '/legal/security', target: '_blank' },
+      { label: 'ESG', href: '/legal/esg' },
+      { label: 'Responsible Disclosure', href: '/legal/responsible-disclosure' },
+    ],
+  },
+  {
+    title: 'Company',
+
+    links: [
+      { label: 'About', href: '/about' },
+
+      { label: 'Brand Assets', href: '/brand-assets' },
+      { label: 'Careers', href: '/careers', target: '_blank' },
     ],
   },
 ];
 
-export { HEADER_EXCLUDED_PATHS, FOOTER_EXCLUDED_PATHS, NAV_LINK, FOOTER_LINK };
+export { HEADER_EXCLUDED_PATHS, FOOTER_EXCLUDED_PATHS, NAV_LINK, FOOTER_LINK, SNS_LINK };

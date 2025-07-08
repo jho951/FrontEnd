@@ -1,23 +1,26 @@
+import { IconName } from '@/types/icon';
+
 interface FooterColumnProps {
   title: string;
   links: string[];
 }
 
-interface FooterLink {
+type FooterLink = {
   label: string;
   href: string;
-}
+  target?: '_blank' | '_parent';
+};
 
-interface FooterSection {
+type FooterSection = {
   title: string;
   links: FooterLink[];
-  external: boolean;
-}
+};
 
-interface FooterNavProps {
-  title: string;
-  links: { label: string; href: string }[];
+export interface SnsLink {
+  name: string;
+  href: string;
+  icon: IconName;
   external?: boolean;
 }
 
-export type { FooterColumnProps, FooterLink, FooterSection, FooterNavProps };
+export type { FooterColumnProps, FooterLink, FooterSection };

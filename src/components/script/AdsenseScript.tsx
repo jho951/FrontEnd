@@ -4,7 +4,7 @@ import Script from 'next/script';
 
 import { ADSENSE_CLIENT_ID, NODE_ENV } from '@/constants';
 
-export default function CustomScript() {
+export default function AdsenseScript() {
   if (NODE_ENV !== 'production' || !ADSENSE_CLIENT_ID) return null;
 
   return (

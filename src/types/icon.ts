@@ -10,6 +10,7 @@ const iconKeys = {
   arrow: null,
   rss: null,
   gitHub: null,
+  globe: null,
 } as const;
 
 /**

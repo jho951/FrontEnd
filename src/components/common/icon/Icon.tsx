@@ -12,6 +12,7 @@ const icons: Record<IconName, FC<SVGProps<SVGSVGElement>>> = {
   arrow: dynamic(() => import('@/asserts/arrow.svg')) as SvgComponent,
   rss: dynamic(() => import('@/asserts/rss.svg')) as SvgComponent,
   gitHub: dynamic(() => import('@/asserts/gitHub.svg')) as SvgComponent,
+  globe: dynamic(() => import('@/asserts/globe.svg')) as SvgComponent,
 };
 
 export default function Icon({ name, size = 24, className, ...props }: IconProps) {

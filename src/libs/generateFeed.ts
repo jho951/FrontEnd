@@ -2,12 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import RSS from 'rss';
 
-export interface PostItem {
-  title: string;
-  slug: string;
-  date: string;
-  description?: string;
-}
+import type { PostItem } from '../types/feed.ts';
 
 export function generateRssFeed(posts: PostItem[]) {
   const siteUrl = 'https://yourdomain.com';

@@ -4,8 +4,8 @@ import { siteMetadata } from '@/libs/metadata';
 import { siteViewport } from '@/libs/viewport';
 import { ThemeProvider } from '@/context/ThemeContext';
 
-import RssScript from '@/components/script/RssScript';
-import AdsenseScript from '@/components/script/AdsenseScript';
+import RssScript from '@/scripts/RssScript';
+import AdsenseScript from '@/scripts/AdsenseScript';
 
 import ClientLayoutWrapper from '@/components/layout/wrapper/ClientLayoutWrapper';
 

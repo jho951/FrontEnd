@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prepare": "husky install",
     "dev": "next dev",
-    "generate:feed": "ts-node scripts/generate-feed.ts",
-    "build": "npm run generate:feed && next build",
+    "generate": "node --import ./register-esbuild.js src/libs/generate-rss.ts",
+    "build": "npm run generate && next build",
     "start": "next start",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
@@ -51,6 +50,8 @@
     "@types/webpack": "^5.28.5",
     "@typescript-eslint/eslint-plugin": "^8.35.0",
     "@typescript-eslint/parser": "^8.35.0",
+    "esbuild": "^0.25.6",
+    "esbuild-register": "^3.6.0",
     "eslint": "^9.30.0",
     "eslint-config-next": "15.3.4",
     "eslint-config-prettier": "^10.1.5",
@@ -60,6 +61,7 @@
     "prettier": "^3.6.2",
     "semantic-release": "^24.2.6",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.3"
   }
 }

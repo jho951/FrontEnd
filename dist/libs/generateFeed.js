@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateRssFeed = generateRssFeed;
-// generateFeed.ts
 var fs = require("node:fs");
 var path = require("node:path");
-var RSS = require("rss"); // ✅ CommonJS 모듈
+var RSS = require('rss');
 function generateRssFeed(posts) {
     var siteUrl = 'https://yourdomain.com';
     var feed = new RSS({

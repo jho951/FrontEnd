@@ -1,6 +1,7 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import RSS from 'rss';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+const RSS = require('rss');
+
 import type { PostItem } from '../types/feed';
 
 export function generateRssFeed(posts: PostItem[]) {

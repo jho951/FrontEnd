@@ -1,7 +1,12 @@
+// next.config.js 또는 next.config.ts
 import type { Configuration, RuleSetRule } from 'webpack';
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'ko'],
+  },
   webpack(config: Configuration) {
     const rules = config.module?.rules ?? [];
 

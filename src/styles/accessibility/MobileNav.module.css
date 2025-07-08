@@ -1,0 +1,45 @@
+.container {
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.section {
+  border-bottom: 1px solid var(--color-gray);
+  padding: 2rem 0 1rem 0.5rem;
+}
+
+.toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+}
+.link {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--color-text);
+  padding: 0.25rem 0;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--color-primary);
+}
+
+.icon {
+  transition: transform 0.3s ease;
+}
+
+.icon.open {
+  transform: rotate(180deg);
+}

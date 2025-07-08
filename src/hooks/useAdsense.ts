@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { AdsenseSlotOptions, pushAds } from '@/types';
 
-import { ADSENSE_CLIENT_ID } from '@/script/constant/secret';
+import { ADSENSE_CLIENT_ID } from '@/constants';
 
 function useAdsense({
   slotId = '1234567890',

@@ -1,54 +1,54 @@
 :root {
-  --color-bg: #f6fdf7;
-  --color-bg-rgb: 246, 253, 247;
+  --color-bg: #f5faff;
+  --color-bg-rgb: 245, 250, 255;
 
   --color-black: #000000;
   --color-black-rgb: 0, 0, 0;
 
   --color-white: #ffffff;
-  --color-black-rgb: 255, 255, 255;
+  --color-white-rgb: 255, 255, 255;
 
-  --color-text: #1e1e1e;
-  --color-text-rgb: 30, 30, 30;
+  --color-text: #1e2b39;
+  --color-text-rgb: 30, 43, 57;
 
-  --color-primary: #8ebf7e;
-  --color-primary-rgb: 142, 191, 126;
+  --color-primary: #69a8dc; /* 🌐 파스텔 블루 */
+  --color-primary-rgb: 105, 168, 220;
 
-  --color-accent: #c2f24b;
-  --color-accent-rgb: 194, 242, 75;
+  --color-accent: #ffc6c6; /* 파스텔 핑크 */
+  --color-accent-rgb: 255, 198, 198;
 
-  --color-secondary: #b5cea8;
-  --color-secondary-rgb: 181, 206, 168;
+  --color-secondary: #ffe3a3; /* 파스텔 옐로우 */
+  --color-secondary-rgb: 255, 227, 163;
 
-  --color-heading: #4a4458;
-  --color-heading-rgb: 74, 68, 88;
+  --color-heading: #3a4e6b;
+  --color-heading-rgb: 58, 78, 107;
 
   --color-gray: #e5e7eb;
   --color-gray-rgb: 229, 231, 235;
 }
 
 :root.dark {
-  --color-bg: #121a12;
-  --color-bg-rgb: 18, 26, 18;
+  --color-bg: #121b25;
+  --color-bg-rgb: 18, 27, 37;
 
   --color-black: #ffffff;
   --color-black-rgb: 255, 255, 255;
 
   --color-white: #000000;
-  --color-black-rgb: 0, 0, 0;
+  --color-white-rgb: 0, 0, 0;
 
-  --color-text: #f1f8f1;
-  --color-text-rgb: 241, 248, 241;
+  --color-text: #e8f1f8;
+  --color-text-rgb: 232, 241, 248;
 
-  --color-primary: #b5cea8;
-  --color-primary-rgb: 181, 206, 168;
+  --color-primary: #8cc4f2; /* 파스텔 블루 (밝음) */
+  --color-primary-rgb: 140, 196, 242;
 
-  --color-accent: #d4ff70;
-  --color-accent-rgb: 212, 255, 112;
+  --color-accent: #ffb3b3; /* 파스텔 레드 */
+  --color-accent-rgb: 255, 179, 179;
 
-  --color-secondary: #3d4d3d;
-  --color-secondary-rgb: 61, 77, 61;
+  --color-secondary: #5b6475; /* 차분한 그레이블루 */
+  --color-secondary-rgb: 91, 100, 117;
 
-  --color-heading: #c2f24b;
-  --color-heading-rgb: 194, 242, 75;
+  --color-heading: #c2e4ff;
+  --color-heading-rgb: 194, 228, 255;
 }

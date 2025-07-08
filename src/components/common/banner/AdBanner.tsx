@@ -4,15 +4,13 @@ import { forwardRef } from 'react';
 
 import { useAdsense } from '@/hooks';
 import { AdBannerProps } from '@/types';
+import { ADSENSE_SLOT_ID, NODE_ENV } from '@/constants';
 
 const AdBanner = forwardRef<HTMLDivElement, AdBannerProps>(
-  (
-    { slotId = process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID, height = 100, width = '100%', className },
-    ref,
-  ) => {
+  ({ slotId = ADSENSE_SLOT_ID, height = 100, width = '100%', className }, ref) => {
     const { adProps } = useAdsense({ slotId });
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (NODE_ENV !== 'production') {
       return (
         <div
           ref={ref}

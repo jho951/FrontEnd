@@ -52,6 +52,10 @@ body {
   visibility: hidden;
 }
 
+main {
+  padding-top: var(--header-offset, 64px);
+}
+
 .hidden {
   opacity: 0;
   visibility: hidden;

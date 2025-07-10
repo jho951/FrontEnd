@@ -1,8 +1,7 @@
 'use client';
 
 import Icon from '@/components/common/icon/Icon';
-
-import { useTheme } from '@/context';
+import { useTheme } from '@/context/ThemeContext';
 
 import styles from '@/styles/button/ThemeButton.module.css';
 

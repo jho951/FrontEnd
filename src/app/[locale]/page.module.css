@@ -1,7 +1,7 @@
 .main {
   display: flex;
   flex-direction: column;
-  background-color: red;
+
   gap: 32px;
   grid-row-start: 2;
 }

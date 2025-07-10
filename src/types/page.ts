@@ -1,13 +1,16 @@
-import { Locale } from 'i18n-config';
+import { Locale } from '../../i18n-config';
+
 export type PageProps = {
   params: {
-    locale: 'en' | 'ko';
+    locale: Locale;
   };
 };
 
 export type LayoutProps = {
   children: React.ReactNode;
-  params: { locale: Locale };
+  params: {
+    locale: Locale;
+  };
 };
 
 export type ErrorProps = {

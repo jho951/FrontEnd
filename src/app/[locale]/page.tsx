@@ -9,11 +9,9 @@ export default async function Home({ params }: PageProps) {
   const t = createTranslator(translations.common);
 
   return (
-    <div className={styles.page}>
-      <main id="main-content" className={styles.main}>
-        <h1>{t('greeting')}</h1>
-        <p>{t('intro')}</p>
-      </main>
-    </div>
+    <main id="main-content" className={styles.main}>
+      <h1>{t('greeting')}</h1>
+      <p>{t('intro')}</p>
+    </main>
   );
 }

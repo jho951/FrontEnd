@@ -10,7 +10,7 @@ import SkipNav from '@/components/common/accessibility/SkipNav';
 
 import HeaderWrapper from '@/components/layout/wrapper/HeaderWrapper';
 
-export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
+export function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const shouldRenderHeader = !HEADER_EXCLUDED_PATHS.some(path => pathname.startsWith(path));
   const shouldRenderFooter = !FOOTER_EXCLUDED_PATHS.some(path => pathname.startsWith(path));

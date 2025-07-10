@@ -5,7 +5,8 @@ import { createTranslator } from '@/features/i18n/serverTranslator';
 import styles from './page.module.css';
 
 export default async function Home({ params }: PageProps) {
-  const translations = await getTranslation(params.locale);
+  const { locale } = await params;
+  const translations = await getTranslation(locale);
   const t = createTranslator(translations.common);
 
   return (

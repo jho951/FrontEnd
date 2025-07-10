@@ -17,15 +17,11 @@ import '@/styles/theme.css';
 import '@/styles/reset.css';
 import '@/styles/global.css';
 
-export async function generateStaticParams() {
-  return [{ locale: 'ko' }, { locale: 'en' }];
-}
-
 export const metadata = siteMetadata;
 export const viewport = siteViewport;
 
 export default async function RootLayout({ children, params }: LayoutProps) {
-  const locale = params.locale;
+  const { locale } = await params;
 
   const translations = await getTranslation(locale);
   const dict = translations.common;

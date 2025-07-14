@@ -4,14 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepare": "husky install",
     "dev": "next dev",
-    "generate": "tsc -p tsconfig.json && node -r tsconfig-paths/register dist/libs/generate-rss.js",
-    "build": "npm run generate && next build",
+    "build": "next build",
     "start": "next start",
-    "format": "prettier . --write",
-    "format:check": "prettier . --check",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
@@ -29,23 +29,13 @@
     "next": "15.3.4",
     "next-mdx-remote": "^5.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "rss": "^1.2.2",
-    "tsconfig-paths": "^4.2.0"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
     "@eslint/js": "^9.30.1",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.3",
-    "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "@types/rss": "^0.0.32",
-    "@types/webpack": "^5.28.5",
     "@typescript-eslint/eslint-plugin": "^8.36.0",
     "@typescript-eslint/parser": "^8.36.0",
     "eslint": "^8.57.1",
@@ -55,8 +45,6 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
-    "semantic-release": "^24.2.6",
-    "typescript": "^5.8.3",
-    "webpack": "^5.99.9"
+    "typescript": "^5.8.3"
   }
 }

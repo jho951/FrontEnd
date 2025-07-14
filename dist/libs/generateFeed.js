@@ -1,29 +1,26 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateRssFeed = generateRssFeed;
-var fs = require("node:fs");
-var path = require("node:path");
-var RSS = require('rss');
-function generateRssFeed(posts) {
-    var siteUrl = 'https://yourdomain.com';
-    var feed = new RSS({
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import RSS from 'rss';
+export function generateRssFeed(posts) {
+    const siteUrl = 'https://yourdomain.com';
+    const feed = new RSS({
         title: 'Your Blog Title',
         description: 'Latest posts from my blog',
-        feed_url: "".concat(siteUrl, "/feed.xml"),
+        feed_url: `${siteUrl}/feed.xml`,
         site_url: siteUrl,
         language: 'en',
-        copyright: "All rights reserved ".concat(new Date().getFullYear(), ", Your Name"),
+        copyright: `All rights reserved ${new Date().getFullYear()}, Your Name`,
         pubDate: new Date(),
     });
-    posts.forEach(function (post) {
+    posts.forEach(post => {
         feed.item({
             title: post.title,
-            url: "".concat(siteUrl, "/posts/").concat(post.slug),
-            guid: "".concat(siteUrl, "/posts/").concat(post.slug),
+            url: `${siteUrl}/posts/${post.slug}`,
+            guid: `${siteUrl}/posts/${post.slug}`,
             description: post.description || '',
             date: new Date(post.date),
         });
     });
-    var outputPath = path.join(process.cwd(), 'public', 'feed.xml');
+    const outputPath = path.join(process.cwd(), 'public', 'feed.xml');
     fs.writeFileSync(outputPath, feed.xml({ indent: true }));
 }

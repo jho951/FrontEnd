@@ -1,4 +1,4 @@
-import { generateRssFeed } from './generateFeed';
+import { generateRssFeed } from './generateFeed.cjs';
 import { getAllPosts } from './post';
 
 const posts = getAllPosts();

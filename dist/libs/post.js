@@ -1,19 +1,16 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllPosts = getAllPosts;
-var fs = require("node:fs");
-var path = require("node:path");
-var matter = require('gray-matter');
-function getAllPosts() {
-    var dir = path.join(process.cwd(), 'posts');
-    var files = fs.readdirSync(dir);
-    return files.map(function (filename) {
-        var slug = filename.replace(/\.md$/, '');
-        var fileContent = fs.readFileSync(path.join(dir, filename), 'utf8');
-        var data = matter(fileContent).data;
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+const matter = require('gray-matter');
+export function getAllPosts() {
+    const dir = path.join(process.cwd(), 'posts');
+    const files = fs.readdirSync(dir);
+    return files.map(filename => {
+        const slug = filename.replace(/\.md$/, '');
+        const fileContent = fs.readFileSync(path.join(dir, filename), 'utf8');
+        const { data } = matter(fileContent);
         return {
             title: data.title,
-            slug: slug,
+            slug,
             date: data.date,
             description: data.description || '',
         };

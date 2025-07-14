@@ -1,35 +1,50 @@
-// middleware.ts
 import { NextResponse } from 'next/server';
-import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from '@/constants';
-function isLocale(value) {
-    return SUPPORTED_LOCALES.includes(value);
+import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE } from '@/constants';
+function isLocale(x) {
+    return SUPPORTED_LANGUAGES.includes(x);
 }
 export function middleware(req) {
-    const { pathname } = req.nextUrl;
-    // ✅ 정적 리소스는 무시
+    const url = req.nextUrl;
+    const { pathname } = url;
     if (pathname.startsWith('/_next') ||
         pathname.startsWith('/api') ||
-        pathname.startsWith('/favicon.ico') ||
-        pathname.startsWith('/robots.txt') ||
-        pathname.startsWith('/manifest.webmanifest') ||
-        pathname.startsWith('/android-chrome') ||
-        pathname.startsWith('/apple-touch-icon') ||
-        pathname.startsWith('/.well-known')) {
+        /\.(?:png|jpg|jpeg|svg|css|js|ico|woff2?)$/.test(pathname)) {
         return NextResponse.next();
     }
-    const pathSegments = pathname.split('/').filter(Boolean);
-    const firstSegment = pathSegments[0];
-    if (isLocale(firstSegment)) {
+    const segments = pathname.split('/').filter(Boolean);
+    const len = segments.length;
+    if (len === 0) {
+        const cookieLang = req.cookies.get('lang')?.value;
+        const locale = cookieLang && isLocale(cookieLang) ? cookieLang : DEFAULT_LANGUAGE;
+        const to = url.clone();
+        to.pathname = `/${locale}`;
+        return NextResponse.redirect(to);
+    }
+    const first = segments[0]; // e.g. 'edit' or 'ko'
+    const last = segments[len - 1]; // e.g. 'ko' or 'edit'
+    // 3) URL 맨 끝에 언어 코드가 붙어있으면 → 내부경로(`/lang/...`)로 rewrite
+    if (isLocale(last)) {
+        const rest = segments.slice(0, -1); // ['edit']
+        const internal = `/${last}` + (rest.length ? `/${rest.join('/')}` : '');
+        const rewriteUrl = url.clone();
+        rewriteUrl.pathname = internal; // '/ko/edit'
+        return NextResponse.rewrite(rewriteUrl);
+    }
+    // 4) URL 맨 앞에 언어 코드가 붙어있으면 → 정상 통과
+    if (isLocale(first)) {
         return NextResponse.next();
     }
-    const acceptLang = req.headers.get('accept-language');
-    const rawLocale = acceptLang?.split(',')?.[0]?.split('-')?.[0] ?? DEFAULT_LOCALE;
-    const locale = isLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
-    const newUrl = new URL(`/${locale}${pathname}`, req.url);
-    return NextResponse.redirect(newUrl);
+    // 5) 그 외 `/something` 같은 경로 → 뒤에 언어 코드 붙여 리디렉트
+    //    예: /edit  → /edit/ko
+    const accept = req.headers.get('accept-language') ?? '';
+    const browserLang = accept.split(',')[0].split('-')[0];
+    const detected = isLocale(browserLang) ? browserLang : DEFAULT_LANGUAGE;
+    const redirectUrl = url.clone();
+    redirectUrl.pathname = `${pathname}/${detected}`;
+    return NextResponse.redirect(redirectUrl);
 }
 export const config = {
     matcher: [
-        '/((?!_next|favicon.ico|robots.txt|manifest.webmanifest|android-chrome|apple-touch-icon|.well-known).*)',
+        '/((?!_next|api|favicon\\.ico|robots\\.txt|.*\\.(?:png|jpg|jpeg|svg|css|js|ico|woff2?)).*)',
     ],
 };

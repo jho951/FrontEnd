@@ -65,7 +65,15 @@
   },
 
   // 빌드 대상에 포함할 파일
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "libs/generate-rss.ts",
+    "libs/generateFeed.cjs",
+    "libs/post.js"
+  ],
 
   // 제외할 디렉터리
   "exclude": ["node_modules", ".next"]

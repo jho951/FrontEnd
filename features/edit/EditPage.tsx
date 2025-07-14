@@ -6,7 +6,7 @@ import { Locale } from '@/types';
 export default function EditPage({ lang }: { lang: Locale }) {
   return (
     <main>
-      <MarkdownEditor />
+      <MarkdownEditor lang={lang} />
     </main>
   );
 }

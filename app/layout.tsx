@@ -6,10 +6,10 @@ import AdsenseScript from '@/components/scripts/AdsenseScript';
 import { DEFAULT_LANGUAGE } from '@/constants';
 import { siteMetadata, siteViewport } from '@/libs';
 
-import '@/styles/font.css';
-import '@/styles/theme.css';
-import '@/styles/reset.css';
-import '@/styles/global.css';
+import '@/styles/global/font.css';
+import '@/styles/global/theme.css';
+import '@/styles/global/reset.css';
+import '@/styles/global/class.css';
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (

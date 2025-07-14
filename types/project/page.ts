@@ -1,5 +1,5 @@
+import { Locale } from '@/types';
+
 export type PageProps = {
-  params: {
-    lang: string;
-  };
+  params: Promise<{ lang: Locale; slugs?: string[] }>;
 };

@@ -51,6 +51,12 @@ export * from './select/select';
 export * from './select/selectOption';
 
 /**
+ * 에디터 타입
+ */
+export * from './editor/PreviewModal';
+export * from './editor/markdownEditor';
+
+/**
  * 프로젝트 타입
  */
 export * from './project/layout';

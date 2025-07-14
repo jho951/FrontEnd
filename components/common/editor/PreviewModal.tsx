@@ -4,8 +4,9 @@ import { createPortal } from 'react-dom';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { PreviewModalProps } from '@/types/editor/PreviewModal';
 import { useScrollLock } from '@/hooks';
+
+import { PreviewModalProps } from '@/types';
 
 import styles from '@/styles/editor/PreviewModal.module.css';
 

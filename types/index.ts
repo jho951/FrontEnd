@@ -53,7 +53,7 @@ export * from './select/selectOption';
 /**
  * 에디터 타입
  */
-export * from './editor/PreviewModal';
+export * from './editor/previewModal';
 export * from './editor/markdownEditor';
 
 /**

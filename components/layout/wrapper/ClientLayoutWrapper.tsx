@@ -2,13 +2,11 @@
 
 import { usePathname } from 'next/navigation';
 
-import { HEADER_EXCLUDED_PATHS, FOOTER_EXCLUDED_PATHS } from '../../../constants/link';
+import SkipNav from '@/components/layout/header/SkipNav';
+import HeaderWrapper from '@/components/layout/wrapper/HeaderWrapper';
+import Footer from '@/components/layout/footer/Footer';
 
-import Footer from '../footer/Footer';
-
-import SkipNav from '../../common/accessibility/SkipNav';
-
-import HeaderWrapper from './HeaderWrapper';
+import { FOOTER_EXCLUDED_PATHS, HEADER_EXCLUDED_PATHS } from '@/constants';
 
 export function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

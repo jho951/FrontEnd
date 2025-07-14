@@ -1,5 +1,5 @@
-import FooterNav from '@/components/common/accessibility/FooterNav';
-import FooterSns from '@/components/common/accessibility/FooterSns';
+import FooterNav from '@/components/layout/footer/FooterNav';
+import FooterSns from '@/components/layout/footer/FooterSns';
 
 import { FOOTER_LINK } from '@/constants/link';
 

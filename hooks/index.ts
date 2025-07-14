@@ -1,5 +1,4 @@
 export * from './useAuth';
-export * from './throttle';
 export * from './useDevice';
 export * from './useScrollY';
 export * from './useAdsense';

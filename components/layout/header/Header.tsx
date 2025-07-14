@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 import Icon from '@/components/common/icon/Icon';
-import PcNav from '@/components/common/accessibility/PcNav';
-import MobileNav from '@/components/common/accessibility/MobileNav';
+import PcNav from '@/components/layout/header/PcNav';
+import MobileNav from '@/components/layout/header/MobileNav';
 import HamburgerButton from '@/components/common/button/HamburgerButton';
 
 import { useScrollY, useScrollDetect, useScrollLock } from '@/hooks';
@@ -38,7 +38,12 @@ function Header({ adOffset }: HeaderProps) {
       >
         <section className={styles.topRow}>
           <h1>
-            <Link className={styles.logoContainer} href="/" aria-label="홈으로 이동">
+            <Link
+              className={styles.logoContainer}
+              href="/"
+              aria-label="홈으로 이동"
+              onClick={() => setMenuOpen(false)}
+            >
               <Icon name="logo" size={44} />
               <span className="sr-only">Skill Blog</span>
             </Link>

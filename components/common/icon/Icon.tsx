@@ -1,9 +1,9 @@
 'use client';
 
-import React, { FC, SVGProps } from 'react';
+import { FC, SVGProps } from 'react';
 import dynamic from 'next/dynamic';
 
-import type { IconName, IconProps, SvgComponent } from '../../../types';
+import type { IconName, IconProps, SvgComponent } from '@/types';
 
 const icons: Record<IconName, FC<SVGProps<SVGSVGElement>>> = {
   sun: dynamic(() => import('@/asserts/sun.svg')) as SvgComponent,

@@ -20,22 +20,21 @@ export function middleware(req) {
         to.pathname = `/${locale}`;
         return NextResponse.redirect(to);
     }
-    const first = segments[0]; // e.g. 'edit' or 'ko'
-    const last = segments[len - 1]; // e.g. 'ko' or 'edit'
-    // 3) URL 맨 끝에 언어 코드가 붙어있으면 → 내부경로(`/lang/...`)로 rewrite
+    const first = segments[0]; 
+    const last = segments[len - 1]; 
+
     if (isLocale(last)) {
-        const rest = segments.slice(0, -1); // ['edit']
+        const rest = segments.slice(0, -1); 
         const internal = `/${last}` + (rest.length ? `/${rest.join('/')}` : '');
         const rewriteUrl = url.clone();
-        rewriteUrl.pathname = internal; // '/ko/edit'
+        rewriteUrl.pathname = internal; 
         return NextResponse.rewrite(rewriteUrl);
     }
-    // 4) URL 맨 앞에 언어 코드가 붙어있으면 → 정상 통과
+
     if (isLocale(first)) {
         return NextResponse.next();
     }
-    // 5) 그 외 `/something` 같은 경로 → 뒤에 언어 코드 붙여 리디렉트
-    //    예: /edit  → /edit/ko
+
     const accept = req.headers.get('accept-language') ?? '';
     const browserLang = accept.split(',')[0].split('-')[0];
     const detected = isLocale(browserLang) ? browserLang : DEFAULT_LANGUAGE;

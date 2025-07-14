@@ -1,29 +1,31 @@
 import { Metadata } from 'next';
 
+import { DESCRIPTION, PROJECT_URL, TITLE } from '@/constants';
+
 export const siteMetadata: Metadata = {
   title: {
-    default: 'My Skill Blog',
-    template: '%s | My Skill Blog',
+    default: TITLE,
+    template: `%s | ${TITLE}`,
   },
-  description: 'my skill blog',
-  metadataBase: new URL('https://yourdomain.com'),
+  description: DESCRIPTION,
+  metadataBase: new URL(PROJECT_URL),
 
   openGraph: {
-    title: 'My Skill Blog',
-    description: 'my skill blog',
+    title: TITLE,
+    description: DESCRIPTION,
     type: 'website',
-    url: 'https://yourdomain.com',
-    siteName: 'My Skill Blog',
+    url: PROJECT_URL,
+    siteName: TITLE,
   },
 
   twitter: {
     card: 'summary_large_image',
-    title: 'My Skill Blog',
-    description: 'my skill blog',
+    title: TITLE,
+    description: DESCRIPTION,
   },
 
   alternates: {
-    canonical: 'https://yourdomain.com',
+    canonical: PROJECT_URL,
   },
   icons: {
     icon: '/favicon.ico',

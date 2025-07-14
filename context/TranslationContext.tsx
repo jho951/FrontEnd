@@ -1,6 +1,6 @@
 'use client';
 import React, { createContext, ReactNode } from 'react';
-import type { Messages, Locale } from '../types';
+import type { Messages, Locale } from '@/types';
 
 export interface TranslationContextType {
   messages: Messages;
@@ -18,7 +18,6 @@ interface Props {
   children: ReactNode;
 }
 
-// **이 컴포넌트를** Layout에서 import 해서 쓰세요**
 export function TranslationsProvider({ messages, lang, children }: Props) {
   return (
     <TranslationsContext.Provider value={{ messages, lang }}>

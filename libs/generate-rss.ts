@@ -1,11 +1,35 @@
-import { generateRssFeed } from './generateFeed.cjs';
-import { getAllPosts } from './post';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import RSS from 'rss';
 
-const posts = getAllPosts();
+import { DESCRIPTION, PROJECT_URL, TITLE } from '../constants/project.ts';
 
-if (posts.length === 0) {
-  console.log('No posts found. Skipping RSS generation.');
-  process.exit(0);
-}
+const feed = new RSS({
+  title: TITLE,
+  description: DESCRIPTION,
+  feed_url: `${PROJECT_URL}/rss.xml`,
+  site_url: PROJECT_URL,
+  language: 'ko',
+});
 
-generateRssFeed(posts);
+const contentDir = path.join(process.cwd(), 'content', 'ko');
+const files = fs.readdirSync(contentDir).filter(file => file.endsWith('.mdx'));
+
+files.forEach(file => {
+  const filePath = path.join(contentDir, file);
+  const source = fs.readFileSync(filePath, 'utf-8');
+  const { data } = matter(source);
+
+  if (!data.title || !data.date || !data.slug) return;
+
+  feed.item({
+    title: data.title,
+    date: data.date,
+    url: `${PROJECT_URL}/ko/${data.slug}`,
+    description: data.summary || '',
+  });
+});
+
+fs.writeFileSync('./public/rss.xml', feed.xml({ indent: true }));
+console.log('✅ RSS feed 생성 완료');

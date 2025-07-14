@@ -1,4 +1,31 @@
 {
+  // 📌 기본 포맷팅
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // 📌 저장 시 자동 eslint --fix 적용
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+
+  // 📌 파일 저장 시 자동 import 정리 (정렬 X, 사용 안 하면 삭제)
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  // 📌 JS/TS에서 포맷 강제 제거 (Prettier 사용)
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // 📌 자동 저장 옵션 (선택)
+  "files.autoSave": "onFocusChange"
 }

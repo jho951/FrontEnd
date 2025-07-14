@@ -1,4 +1,4 @@
-import { FooterSection, SnsLink } from '../types';
+import { FooterSection, SnsLink } from '@/types';
 
 const HEADER_EXCLUDED_PATHS = ['/signin', '/signup'];
 const FOOTER_EXCLUDED_PATHS = ['/signin', '/signup'];

@@ -1,6 +1,6 @@
-import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '../constants';
-import type { Locale } from '../types';
 import { NextRequest } from 'next/server';
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@/constants';
+import type { Locale } from '@/types';
 
 export function getPreferredLanguage(request: NextRequest): Locale {
   const header = request.headers.get('accept-language') ?? '';

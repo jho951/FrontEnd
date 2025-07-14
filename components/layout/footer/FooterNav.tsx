@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { FooterSection } from '../../../types';
-import styles from '@/styles/accessibility/FooterNav.module.css';
+import { FooterSection } from '@/types';
+import styles from '@/styles/footer/FooterNav.module.css';
 
 export default function FooterNav({ title, links }: FooterSection) {
   return (

@@ -3,16 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "scripts": {
-    "prepare": "husky install",
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
-    "format": "prettier . --write",
-    "format:check": "prettier . --check"
-  },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
       "eslint --fix",
@@ -22,6 +12,17 @@
       "prettier --write"
     ]
   },
+  "scripts": {
+    "prepare": "husky install",
+    "dev": "next dev",
+    "generate:rss": "ts-node -r tsconfig-paths/register libs/generate-rss.ts",
+    "build": "npm run generate:rss && next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
+  },
   "dependencies": {
     "@uiw/react-md-editor": "^4.0.7",
     "framer-motion": "^12.19.2",
@@ -29,22 +30,30 @@
     "next": "15.3.4",
     "next-mdx-remote": "^5.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "rss": "^1.2.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@eslint/js": "^9.30.1",
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
+    "@types/rss": "^0.0.32",
+    "@types/webpack": "^5.28.5",
     "@typescript-eslint/eslint-plugin": "^8.36.0",
     "@typescript-eslint/parser": "^8.36.0",
-    "eslint": "^8.57.1",
+    "eslint": "^9.31.0",
     "eslint-config-next": "^15.3.5",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.5.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
-    "typescript": "^5.8.3"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.100.1"
   }
 }

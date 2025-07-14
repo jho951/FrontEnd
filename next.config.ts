@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
   webpack(config: Configuration) {
     const rules = config.module?.rules ?? [];
 
-    // SVG 기본 로더 제외
     const fileLoaderRule = rules.find(
       (rule): rule is RuleSetRule =>
         typeof rule === 'object' &&
@@ -19,7 +18,6 @@ const nextConfig: NextConfig = {
       fileLoaderRule.exclude = /\.svg$/i;
     }
 
-    // SVGR 적용
     rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
@@ -28,6 +26,8 @@ const nextConfig: NextConfig = {
 
     return config;
   },
+
+  allowedDevOrigins: ['172.30.*.*', 'local-origin.dev', '*.local-origin.dev'],
 };
 
 export default nextConfig;

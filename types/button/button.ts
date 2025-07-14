@@ -14,15 +14,6 @@ interface BaseButtonProps {
   prefetch?: boolean;
 }
 
-type HamburgerButtonProps = {
-  isOpen: boolean;
-  onClick: () => void;
-  size?: number;
-  tabIndex?: number;
-};
-
-export type { HamburgerButtonProps };
-
 export interface ButtonProps extends BaseButtonProps, HTMLMotionProps<'button'> {}
 
 export interface LinkButtonProps extends BaseButtonProps, ComponentPropsWithRef<'a'> {

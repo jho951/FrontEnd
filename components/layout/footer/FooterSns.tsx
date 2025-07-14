@@ -2,12 +2,12 @@ import { useState } from 'react';
 
 import Link from 'next/link';
 
-import Icon from '../icon/Icon';
-import Select from '../select/Select';
+import Icon from '@/components/common/icon/Icon';
+import Select from '@/components/common/select/Select';
 
-import { COPY, LANGUAGE_LIST, SNS_LINK } from '../../../constants';
+import { COPY, LANGUAGE_LIST, SNS_LINK } from '@/constants';
 
-import styles from '@/styles/accessibility/FooterSns.module.css';
+import styles from '@/styles/footer/FooterSns.module.css';
 
 export default function FooterSns() {
   const [language, setLanguage] = useState('English');

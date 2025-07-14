@@ -1,11 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-import LinkButton from '../button/LinkButton';
+import { NAV_LINK, NOT_AUTH_LINK } from '@/constants';
+import { LinkButton } from '@/components/common/button';
 
-import { NAV_LINK, NOT_AUTH_LINK } from '../../../constants';
-
-import styles from '@/styles/accessibility/PcNav.module.css';
+import styles from '@/styles/header/PcNav.module.css';
 
 export default function PcNav() {
   const pathname = usePathname();

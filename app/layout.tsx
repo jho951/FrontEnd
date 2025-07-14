@@ -1,15 +1,17 @@
+import type { ReactNode } from 'react';
+
 import RssScript from '@/components/scripts/RssScript';
 import AdsenseScript from '@/components/scripts/AdsenseScript';
 
 import { DEFAULT_LANGUAGE } from '@/constants';
-
 import { siteMetadata, siteViewport } from '@/libs';
 
+import '@/styles/font.css';
 import '@/styles/theme.css';
 import '@/styles/reset.css';
 import '@/styles/global.css';
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang={DEFAULT_LANGUAGE} suppressHydrationWarning>
       <head>

@@ -1,7 +1,7 @@
-import type { Locale, Messages } from '../types';
+import { en } from '@/asserts/locales/en';
+import { ko } from '@/asserts/locales/ko';
 
-import { en } from '../asserts/locales/en';
-import { ko } from '../asserts/locales/ko';
+import type { Locale, Messages } from '@/types';
 
 const lookup: Record<Locale, Messages> = { en, ko };
 

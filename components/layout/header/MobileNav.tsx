@@ -2,15 +2,16 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import Icon from '../icon/Icon';
-import DropdownAnimate from '../animation/DropdownAnimate';
+import Icon from '@/components/common/icon/Icon';
+import DropdownAnimate from '@/components/common/animation/DropdownAnimate';
 
-import { NAV_LINK } from '../../../constants';
-import type { HeaderMenuOpenProps } from '../../../types';
+import { NAV_LINK } from '@/constants';
 
-import styles from '@/styles/accessibility/MobileNav.module.css';
+import { HeaderMenuOpenProps } from '@/types';
 
-export default function MobileNav({ isOpen }: HeaderMenuOpenProps) {
+import styles from '@/styles/header/MobileNav.module.css';
+
+export default function MobileNav({ isOpen, onClick }: HeaderMenuOpenProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggle = (idx: number) => {
@@ -52,7 +53,7 @@ export default function MobileNav({ isOpen }: HeaderMenuOpenProps) {
                         <ul id={`mobile-submenu-${idx}`} className={styles.dropdown}>
                           {item.children.map(sub => (
                             <li key={sub.href}>
-                              <Link href={sub.href} className={styles.link}>
+                              <Link href={sub.href} className={styles.link} onClick={onClick}>
                                 {sub.label}
                               </Link>
                             </li>
@@ -63,7 +64,7 @@ export default function MobileNav({ isOpen }: HeaderMenuOpenProps) {
                   </AnimatePresence>
                 </>
               ) : (
-                <Link href={item.href ?? '#'} className={styles.link}>
+                <Link href={item.href ?? '#'} className={styles.link} onClick={onClick}>
                   {item.label}
                 </Link>
               )}

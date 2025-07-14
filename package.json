@@ -2,10 +2,10 @@
   "name": "my-blog",
   "version": "0.1.0",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "dev": "next dev",
-    "generate": "tsc src/libs/generate-rss.ts --outDir dist && node dist/libs/generate-rss.js",
+    "generate": "tsc -p tsconfig.json && node -r tsconfig-paths/register dist/libs/generate-rss.js",
     "build": "npm run generate && next build",
     "start": "next start",
     "format": "prettier . --write",
@@ -27,9 +27,11 @@
     "framer-motion": "^12.19.2",
     "gray-matter": "^4.0.3",
     "next": "15.3.4",
+    "next-mdx-remote": "^5.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "rss": "^1.2.2"
+    "rss": "^1.2.2",
+    "tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
@@ -54,7 +56,6 @@
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
     "semantic-release": "^24.2.6",
-    "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "webpack": "^5.99.9"
   }

@@ -1,33 +1,65 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { locales } from './i18n-config';
-import { detectLocale } from './detectLocale';
+import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE } from '@/constants';
+import type { Locale } from '@/types';
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  const segments = pathname.split('/').filter(Boolean);
+function isLocale(x: string): x is Locale {
+  return SUPPORTED_LANGUAGES.includes(x as Locale);
+}
 
-  // ✅ 1. 루트 경로면 → 감지된 locale로 리디렉션
-  if (pathname === '/') {
-    const locale = detectLocale(request);
-    const url = request.nextUrl.clone();
-    url.pathname = `/${locale}`;
-    return NextResponse.redirect(url);
-  }
+export function middleware(req: NextRequest) {
+  const url = req.nextUrl;
+  const { pathname } = url;
 
-  // ✅ 2. 마지막 segment가 이미 locale이면 그대로 진행
-  const last = segments[segments.length - 1];
-  const isLocale = locales.includes(last as any);
-  if (isLocale) {
+  if (
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/api') ||
+    /\.(?:png|jpg|jpeg|svg|css|js|ico|woff2?)$/.test(pathname)
+  ) {
     return NextResponse.next();
   }
 
-  // ✅ 3. 그 외엔 → suffix로 locale 붙여서 리디렉션
-  const locale = detectLocale(request);
-  const url = request.nextUrl.clone();
-  url.pathname = `${pathname.replace(/\/$/, '')}/${locale}`;
-  return NextResponse.redirect(url);
+  const segments = pathname.split('/').filter(Boolean);
+  const len = segments.length;
+
+  if (len === 0) {
+    const cookieLang = req.cookies.get('lang')?.value;
+    const locale: Locale = cookieLang && isLocale(cookieLang) ? cookieLang : DEFAULT_LANGUAGE;
+
+    const to = url.clone();
+    to.pathname = `/${locale}`;
+    return NextResponse.redirect(to);
+  }
+
+  const first = segments[0]; // e.g. 'edit' or 'ko'
+  const last = segments[len - 1]; // e.g. 'ko' or 'edit'
+
+  // 3) URL 맨 끝에 언어 코드가 붙어있으면 → 내부경로(`/lang/...`)로 rewrite
+  if (isLocale(last)) {
+    const rest = segments.slice(0, -1); // ['edit']
+    const internal = `/${last}` + (rest.length ? `/${rest.join('/')}` : '');
+    const rewriteUrl = url.clone();
+    rewriteUrl.pathname = internal; // '/ko/edit'
+    return NextResponse.rewrite(rewriteUrl);
+  }
+
+  // 4) URL 맨 앞에 언어 코드가 붙어있으면 → 정상 통과
+  if (isLocale(first)) {
+    return NextResponse.next();
+  }
+
+  // 5) 그 외 `/something` 같은 경로 → 뒤에 언어 코드 붙여 리디렉트
+  //    예: /edit  → /edit/ko
+  const accept = req.headers.get('accept-language') ?? '';
+  const browserLang = accept.split(',')[0].split('-')[0] as Locale;
+  const detected = isLocale(browserLang) ? browserLang : DEFAULT_LANGUAGE;
+
+  const redirectUrl = url.clone();
+  redirectUrl.pathname = `${pathname}/${detected}`;
+  return NextResponse.redirect(redirectUrl);
 }
 
 export const config = {
-  matcher: ['/', '/edit', '/edit/', '/post/:path*', '/about'],
+  matcher: [
+    '/((?!_next|api|favicon\\.ico|robots\\.txt|.*\\.(?:png|jpg|jpeg|svg|css|js|ico|woff2?)).*)',
+  ],
 };

@@ -2,9 +2,9 @@
 
 import { forwardRef } from 'react';
 
-import { useAdsense } from '../../../hooks';
-import { AdBannerProps } from '../../../types';
-import { ADSENSE_SLOT_ID, NODE_ENV } from '../../../constants';
+import { useAdsense } from '@/hooks';
+import { AdBannerProps } from '@/types';
+import { ADSENSE_SLOT_ID, NODE_ENV } from '@/constants';
 
 const AdBanner = forwardRef<HTMLDivElement, AdBannerProps>(
   ({ slotId = ADSENSE_SLOT_ID, height = 100, width = '100%', className }, ref) => {
@@ -41,3 +41,5 @@ const AdBanner = forwardRef<HTMLDivElement, AdBannerProps>(
 );
 
 export default AdBanner;
+
+AdBanner.displayName = 'AdBanner';

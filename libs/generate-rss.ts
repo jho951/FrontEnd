@@ -32,4 +32,3 @@ files.forEach(file => {
 });
 
 fs.writeFileSync('./public/rss.xml', feed.xml({ indent: true }));
-console.log('✅ RSS feed 생성 완료');

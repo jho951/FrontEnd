@@ -1,17 +1,17 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import type { SelectProps, Option } from '../../../types';
+import type { SelectProps, SelectOption } from '@/types';
 import styles from '@/styles/select/Select.module.css';
 
-export default function Select({
+export default function Select<T extends SelectOption>({
   options,
   value,
   onChange,
   className = '',
   placeholder = 'Select...',
   renderOptionLabel,
-}: SelectProps) {
+}: SelectProps<T>) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -37,28 +37,29 @@ export default function Select({
         aria-expanded={open}
       >
         {selectedOption
-          ? renderOptionLabel
-            ? renderOptionLabel(selectedOption)
-            : selectedOption.label
+          ? (renderOptionLabel?.(selectedOption) ?? selectedOption.label)
           : placeholder}
       </button>
 
       {open && (
         <ul className={styles.dropdown} role="listbox">
-          {options.map((opt: Option) => (
-            <li
-              key={opt.value}
-              className={styles.option}
-              role="option"
-              aria-selected={opt.value === value}
-              onClick={() => {
-                onChange(opt.value);
-                setOpen(false);
-              }}
-            >
-              {renderOptionLabel ? renderOptionLabel(opt) : opt.label}
-            </li>
-          ))}
+          {options.map(opt => {
+            const isSelected = opt.value === value;
+            return (
+              <li
+                key={`${opt.value}-${opt.label}`}
+                className={`${styles.option} ${isSelected ? styles.selected : ''}`}
+                role="option"
+                aria-selected={isSelected}
+                onClick={() => {
+                  onChange(opt.value);
+                  setOpen(false);
+                }}
+              >
+                {renderOptionLabel?.(opt) ?? opt.label}
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

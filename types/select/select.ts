@@ -1,8 +1,10 @@
-export type SelectProps = {
-  options: { label: string; value: string }[];
-  value: string;
-  onChange: (value: string) => void;
+import { SelectOption } from '@/types/select/selectOption';
+
+export interface SelectProps<T extends SelectOption> {
+  options: T[];
+  value: T['value'];
+  onChange: (v: T['value']) => void;
   className?: string;
   placeholder?: React.ReactNode;
-  renderOptionLabel?: (option: { label: string; value: string }) => React.ReactNode;
-};
+  renderOptionLabel?: (option: T) => React.ReactNode;
+}

@@ -7,8 +7,15 @@ import HeaderWrapper from '@/components/layout/wrapper/HeaderWrapper';
 import Footer from '@/components/layout/footer/Footer';
 
 import { FOOTER_EXCLUDED_PATHS, HEADER_EXCLUDED_PATHS } from '@/constants';
+import { Locale } from '@/types';
 
-export function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
+export function ClientLayoutWrapper({
+  children,
+  lang,
+}: {
+  children: React.ReactNode;
+  lang: Locale;
+}) {
   const pathname = usePathname();
   const shouldRenderHeader = !HEADER_EXCLUDED_PATHS.some(path => pathname.startsWith(path));
   const shouldRenderFooter = !FOOTER_EXCLUDED_PATHS.some(path => pathname.startsWith(path));
@@ -18,7 +25,7 @@ export function ClientLayoutWrapper({ children }: { children: React.ReactNode })
       <SkipNav />
       {shouldRenderHeader && <HeaderWrapper />}
       {children}
-      {shouldRenderFooter && <Footer />}
+      {shouldRenderFooter && <Footer lang={lang} />}
     </>
   );
 }

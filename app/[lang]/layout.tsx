@@ -14,7 +14,7 @@ export default async function LocaleLayout({ children }: LayoutProps) {
   return (
     <ThemeProvider>
       <TranslationsProvider messages={messages} lang={lang}>
-        <ClientLayoutWrapper>
+        <ClientLayoutWrapper lang={lang}>
           <main> {children}</main>
         </ClientLayoutWrapper>
       </TranslationsProvider>

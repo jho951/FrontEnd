@@ -1,23 +1,24 @@
-import { headers } from 'next/headers';
-import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '../constants';
-import type { Locale } from '../types';
+import { cookies, headers } from 'next/headers';
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@/constants';
+import type { Locale } from '@/types';
 
 export async function getServerCurrentLanguage(): Promise<Locale> {
-  const hdrs = await headers();
-
-  const viaMiddleware = hdrs.get('x-middleware-path');
-  const referer = hdrs.get('referer');
-  const rawUrl = viaMiddleware ?? referer ?? '/';
-
-  // 3) parse out the pathname
-  const pathname = new URL(rawUrl, 'http://dummy').pathname;
-
-  // 4) pick off the first segment as lang
-  const first = pathname.split('/')[1];
-  if (first && SUPPORTED_LANGUAGES.includes(first as Locale)) {
-    return first as Locale;
+  // 1. 쿠키 우선
+  const cookieLang = (await cookies()).get('lang')?.value;
+  if (cookieLang && SUPPORTED_LANGUAGES.includes(cookieLang as Locale)) {
+    return cookieLang as Locale;
   }
 
-  // 5) fallback
+  // 2. URL 기반 추출
+  const hdrs = headers();
+  const rawUrl = (await hdrs).get('x-middleware-path') ?? (await hdrs).get('referer') ?? '/';
+
+  const pathname = new URL(rawUrl, 'http://dummy.local').pathname;
+  const firstSegment = pathname.split('/')[1];
+  if (firstSegment && SUPPORTED_LANGUAGES.includes(firstSegment as Locale)) {
+    return firstSegment as Locale;
+  }
+
+  // 3. 기본 fallback
   return DEFAULT_LANGUAGE;
 }

@@ -49,6 +49,7 @@ export * from './rss/rss';
  */
 export * from './select/select';
 export * from './select/selectOption';
+export * from './select/languageOption';
 
 /**
  * 에디터 타입

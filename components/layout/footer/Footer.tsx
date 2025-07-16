@@ -4,8 +4,9 @@ import FooterSns from '@/components/layout/footer/FooterSns';
 import { FOOTER_LINK } from '@/constants/link';
 
 import styles from '@/styles/footer/Footer.module.css';
+import { Locale } from '@/types';
 
-function Footer() {
+function Footer({ lang }: { lang: Locale }) {
   return (
     <footer className={styles.footer}>
       <div className={styles.columns}>
@@ -13,7 +14,7 @@ function Footer() {
           <FooterNav key={idx} title={section.title} links={section.links} />
         ))}
       </div>
-      <FooterSns />
+      <FooterSns lang={lang} />
     </footer>
   );
 }

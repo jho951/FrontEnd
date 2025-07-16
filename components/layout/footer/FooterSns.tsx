@@ -7,27 +7,36 @@ import Link from 'next/link';
 import Icon from '@/components/common/icon/Icon';
 import Select from '@/components/common/select/Select';
 
-import { setLanguageCookie } from '@/libs/cookie';
+import { getLanguageCookie, setLanguageCookie } from '@/libs/cookie';
 
-import { COPY, LANGUAGE_LIST, SNS_LINK } from '@/constants';
-import type { LanguageOption, Locale } from '@/types';
+import { DEFAULT_LANGUAGE, LANGUAGE_OPTIONS, COPY, SNS_LINK } from '@/constants';
 
+import type { Locale, LanguageOption } from '@/types';
 import styles from '@/styles/footer/FooterSns.module.css';
 
-export default function FooterSns({ lang }: { lang: Locale }) {
-  const [language, setLanguage] = useState<LanguageOption['value']>(lang);
+// ✅ 초기 언어 결정 로직
+function resolveInitialLang(): Locale {
+  if (typeof window === 'undefined') return DEFAULT_LANGUAGE;
+
+  const cookieLang = getLanguageCookie();
+  const isValid = LANGUAGE_OPTIONS.some(l => l.value === cookieLang);
+  return isValid ? (cookieLang as Locale) : DEFAULT_LANGUAGE;
+}
+
+export default function FooterSns() {
+  const [language, setLanguage] = useState<Locale>(resolveInitialLang);
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
 
-  const handleLocaleChange = (nextLang: LanguageOption['value']) => {
-    if (nextLang === lang) return;
+  const handleLocaleChange = (nextLang: Locale) => {
+    if (nextLang === language) return;
 
     setLanguageCookie(nextLang);
     setLanguage(nextLang);
 
     const segments = pathname.split('/');
-    const [, , ...rest] = segments;
+    const [, , ...rest] = segments; // /ko/about → ['ko', 'about']
     const nextPath = `/${nextLang}/${rest.join('/')}`;
 
     startTransition(() => {
@@ -35,14 +44,14 @@ export default function FooterSns({ lang }: { lang: Locale }) {
     });
   };
 
-  const selectedLanguage = LANGUAGE_LIST.find(l => l.value === language)!;
+  const selectedLanguage = LANGUAGE_OPTIONS.find(l => l.value === language)!;
 
   return (
     <div className={styles.bottom}>
       <p className={styles.copy}>{COPY}</p>
       <div className={styles.languageAndIcons}>
         <Select<LanguageOption>
-          options={LANGUAGE_LIST}
+          options={LANGUAGE_OPTIONS}
           value={language}
           onChange={handleLocaleChange}
           renderOptionLabel={opt => (

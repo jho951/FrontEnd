@@ -1,2 +1,11 @@
 echo "🧹 Lint 중..."
 npx lint-staged
+
+echo "🔎 타입 검사 중..."
+npm run _typecheck
+
+echo "🔎 prettier 체크 중..."
+npm run _format:check
+
+echo "🔎 prettier 검사 중..."
+npm run _format

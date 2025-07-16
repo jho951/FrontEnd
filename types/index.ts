@@ -1,55 +1,48 @@
 /**
- * 배너 타입
+ * 광고 타입
  */
-export * from './banner/adBanner';
+export * from './ad';
+
+/**
+ * context 타입
+ */
+export * from './theme';
+export * from './translate';
 
 /**
  * 버튼 타입
  */
-export * from './button/button';
-export * from './button/hamburgerButton';
+export * from './button';
 
 /**
  * 푸터 타입
  */
-export * from './footer/footer';
-export * from './footer/footerElement';
+export * from './footer';
 
 /**
  * 헤더 타입
  */
-export * from './header/header';
-export * from './header/headerMenu';
+export * from './header';
 
 /**
  * 아이콘 타입
  */
-export * from './icon/icon';
-export * from './icon/svg';
-export * from './icon/sns';
-export * from './icon/logo';
+export * from './icon';
 
 /**
- * 언어 타입
+ * 다국어 타입
  */
-export * from './lang/languages';
-
-/**
- * 네비게이트 타입
- */
-export * from './navigate/navigation';
+export * from './translate';
 
 /**
  * 피드 타입
  */
-export * from './rss/rss';
+export * from './rss';
 
 /**
  * 셀렉트 타입
  */
-export * from './select/select';
-export * from './select/selectOption';
-export * from './select/languageOption';
+export * from './select';
 
 /**
  * 에디터 타입
@@ -58,8 +51,6 @@ export * from './editor/previewModal';
 export * from './editor/markdownEditor';
 
 /**
- * 프로젝트 타입
+ * 페이지 타입
  */
-export * from './project/layout';
-export * from './project/page';
-export * from './project/error';
+export * from './page';

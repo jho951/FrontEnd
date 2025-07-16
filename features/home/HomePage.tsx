@@ -1,5 +1,3 @@
-'use client';
-
 import { Locale } from '@/types';
 
 export default function HomePage({ lang }: { lang: Locale }) {

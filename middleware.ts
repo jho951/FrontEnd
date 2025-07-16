@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@/constants';
+import { DEFAULT_LANGUAGE, SUPPORTED_LOCALES } from '@/constants';
 import type { Locale } from '@/types';
 
 const LOCALE_COOKIE = 'lang';
 
 function isLocale(x: string): x is Locale {
-  return SUPPORTED_LANGUAGES.includes(x as Locale);
+  return SUPPORTED_LOCALES.includes(x as Locale);
 }
 
 export function middleware(req: NextRequest) {

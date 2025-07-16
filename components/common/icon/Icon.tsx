@@ -11,7 +11,7 @@ const icons: Record<IconName, FC<SVGProps<SVGSVGElement>>> = {
   moon: dynamic(() => import('@/assets/icons/moon.svg')) as SvgComponent,
   arrow: dynamic(() => import('@/assets/icons/arrow.svg')) as SvgComponent,
   rss: dynamic(() => import('@/assets/icons/rss.svg')) as SvgComponent,
-  gitHub: dynamic(() => import('@/assets/icons/gitHub.svg')) as SvgComponent,
+  gitHub: dynamic(() => import('@/assets/icons/github.svg')) as SvgComponent,
   globe: dynamic(() => import('@/assets/icons/globe.svg')) as SvgComponent,
 };
 

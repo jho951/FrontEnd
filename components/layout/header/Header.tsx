@@ -6,8 +6,7 @@ import Icon from '@/components/common/icon/Icon';
 import PcNav from '@/components/layout/header/PcNav';
 import MobileNav from '@/components/layout/header/MobileNav';
 import HamburgerButton from '@/components/common/button/HamburgerButton';
-
-import { useScrollY, useScrollDetect, useScrollLock } from '@/hooks';
+import { useScrollDetect, useScrollLock, useScrollY } from '@/hooks/useScroll';
 
 import type { HeaderProps } from '@/types';
 

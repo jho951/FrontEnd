@@ -1,27 +1,19 @@
 'use client';
-import React, { createContext, ReactNode } from 'react';
-import type { Messages, Locale } from '@/types';
 
-export interface TranslationContextType {
-  messages: Messages;
-  lang: Locale;
-}
+import { createContext } from 'react';
+import type { TranslationContextType, TranslateProviderProps } from '@/types';
 
-export const TranslationsContext = createContext<TranslationContextType>({
-  messages: {} as Messages,
-  lang: 'en',
+const TranslationsContext = createContext<TranslationContextType>({
+  messages: {} as TranslationContextType['messages'],
+  lang: 'ko',
 });
 
-interface Props {
-  messages: Messages;
-  lang: Locale;
-  children: ReactNode;
-}
-
-export function TranslationsProvider({ messages, lang, children }: Props) {
+function TranslationsProvider({ messages, lang, children }: TranslateProviderProps) {
   return (
     <TranslationsContext.Provider value={{ messages, lang }}>
       {children}
     </TranslationsContext.Provider>
   );
 }
+
+export { TranslationsContext, TranslationsProvider };

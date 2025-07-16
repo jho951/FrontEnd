@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { HamburgerButtonProps } from '../../../types';
+import { HamburgerButtonProps } from '@/types';
 
 import styles from '@/styles/button/HamburgerButton.module.css';
 

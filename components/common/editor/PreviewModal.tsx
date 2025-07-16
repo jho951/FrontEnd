@@ -4,21 +4,19 @@ import { createPortal } from 'react-dom';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { useScrollLock } from '@/hooks';
-
 import { PreviewModalProps } from '@/types';
 
 import styles from '@/styles/editor/PreviewModal.module.css';
+import { useScrollLock } from '@/hooks/useScroll';
 
 export default function PreviewModal({ content, onClose }: PreviewModalProps) {
   const [mounted, setMounted] = useState(false);
+  useScrollLock(mounted);
 
   useEffect(() => {
     setMounted(true);
     return () => setMounted(false);
   }, []);
-
-  useScrollLock(mounted);
 
   if (!mounted) return null;
 

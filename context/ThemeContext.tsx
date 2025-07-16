@@ -1,14 +1,10 @@
 'use client';
 
-import React from 'react';
 import { createContext, useContext, useEffect, useState } from 'react';
 
-type Theme = 'light' | 'dark';
+import { resolveInitialTheme } from '@/libs/theme';
 
-interface ThemeContextProps {
-  theme: Theme;
-  toggleTheme: () => void;
-}
+import { Theme, ThemeContextProps } from '@/types';
 
 const ThemeContext = createContext<ThemeContextProps | null>(null);
 
@@ -17,59 +13,15 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [mounted, setMounted] = useState(false);
   const [isManual, setIsManual] = useState(false);
 
+  // 초기 테마 설정
   useEffect(() => {
-    const saved = localStorage.getItem('theme') as Theme | null;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const hour = new Date().getHours();
-    const isNight = hour >= 18 || hour < 6;
-
-    let resolvedTheme: Theme;
-
-    if (saved === 'light' || saved === 'dark') {
-      resolvedTheme = saved;
-      setIsManual(true);
-    } else if (prefersDark) {
-      resolvedTheme = 'dark';
-    } else if (isNight) {
-      resolvedTheme = 'dark';
-    } else {
-      resolvedTheme = 'light';
-    }
-
-    setTheme(resolvedTheme);
+    const { theme: initialTheme, isManual } = resolveInitialTheme();
+    setTheme(initialTheme);
+    setIsManual(isManual);
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    if (!mounted) return;
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    if (isManual) {
-      localStorage.setItem('theme', theme);
-    }
-  }, [theme, mounted, isManual]);
-
-  useEffect(() => {
-    if (!mounted || isManual) return;
-
-    const interval = setInterval(() => {
-      const hour = new Date().getHours();
-      const isNight = hour >= 18 || hour < 6;
-
-      setTheme(prev => {
-        if (isNight && prev !== 'dark') return 'dark';
-        if (!isNight && prev !== 'light') return 'light';
-        return prev;
-      });
-    }, 60 * 1000);
-
-    return () => clearInterval(interval);
-  }, [mounted, isManual]);
-
-  const toggleTheme = () => {
-    setIsManual(true);
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
-  };
-
+  // 테마 적용 및 저장
   useEffect(() => {
     if (!mounted) return;
     document.documentElement.classList.toggle('dark', theme === 'dark');
@@ -78,6 +30,20 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       localStorage.setItem('theme', theme);
     }
   }, [theme, mounted, isManual]);
+
+  // 자동 테마 변경
+  useEffect(() => {
+    const { theme: initialTheme, isManual } = resolveInitialTheme();
+    setTheme(initialTheme);
+    setIsManual(isManual);
+    setMounted(true);
+  }, []);
+
+  // 테마 토글
+  const toggleTheme = () => {
+    setIsManual(true);
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

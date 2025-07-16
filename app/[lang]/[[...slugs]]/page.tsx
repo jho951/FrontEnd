@@ -14,7 +14,7 @@ export default async function Page({ params }: PageProps) {
   }
 
   if (first === 'edit' && !second) {
-    return <EditPage lang={lang} />;
+    return <EditPage />;
   }
 
   return notFound();

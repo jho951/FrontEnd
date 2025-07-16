@@ -1,17 +1,17 @@
-'use client';
-
 import { forwardRef } from 'react';
 
-import { useAdsense } from '@/hooks';
 import { AdBannerProps } from '@/types';
-import { ADSENSE_SLOT_ID, NODE_ENV } from '@/constants';
+import { NODE_ENV } from '@/constants';
+import { useAdsense } from '@/hooks/useAdsense';
 
 const AdBanner = forwardRef<HTMLDivElement, AdBannerProps>(
-  ({ slotId = ADSENSE_SLOT_ID, height = 100, width = '100%', className }, ref) => {
-    const { adProps } = useAdsense({ slotId });
+  ({ slotId, height = 100, width = '100%', className }, ref) => {
+    const isProd = NODE_ENV === 'production';
 
-    if (NODE_ENV !== 'production') {
-      return (
+    const { adProps, fallback } = useAdsense({
+      slotId,
+      style: { height, width },
+      fallback: !isProd && (
         <div
           ref={ref}
           className={className}
@@ -29,12 +29,14 @@ const AdBanner = forwardRef<HTMLDivElement, AdBannerProps>(
         >
           [Ad Placeholder - development mode]
         </div>
-      );
-    }
+      ),
+    });
+
+    if (!isProd && fallback) return fallback;
 
     return (
       <div ref={ref} className={className}>
-        <ins {...adProps} style={{ ...adProps.style, height, width }} />
+        <ins {...adProps} />
       </div>
     );
   },

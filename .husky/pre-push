@@ -1,5 +1,5 @@
-echo "🔎 타입 검사 중..."
-npm run typecheck
+echo "🏗️ eslint 확인 중..."
+npm run lint 
 
 echo "🏗️ 빌드 확인 중..."
 npm run build

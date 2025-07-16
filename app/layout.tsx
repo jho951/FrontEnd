@@ -4,7 +4,9 @@ import RssScript from '@/components/scripts/RssScript';
 import AdsenseScript from '@/components/scripts/AdsenseScript';
 
 import { DEFAULT_LANGUAGE } from '@/constants';
-import { siteMetadata, siteViewport } from '@/libs';
+
+import { siteMetadata } from '@/libs/meta-data';
+import { siteViewport } from '@/libs/view-port';
 
 import '@/styles/global/font.css';
 import '@/styles/global/theme.css';

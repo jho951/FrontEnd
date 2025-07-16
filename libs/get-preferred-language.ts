@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@/constants';
+import { DEFAULT_LANGUAGE, SUPPORTED_LOCALES } from '@/constants';
 import type { Locale } from '@/types';
 
 export function getPreferredLanguage(request: NextRequest): Locale {
@@ -8,7 +8,7 @@ export function getPreferredLanguage(request: NextRequest): Locale {
 
   for (const lang of langs) {
     const short = lang.slice(0, 2).toLowerCase();
-    if (SUPPORTED_LANGUAGES.includes(short as Locale)) {
+    if (SUPPORTED_LOCALES.includes(short as Locale)) {
       return short as Locale;
     }
   }

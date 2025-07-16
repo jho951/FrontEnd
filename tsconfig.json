@@ -22,6 +22,7 @@
     },
 
     // 타입 정의
+    "typeRoots": ["./types", "./node_modules/@types"],
     "types": ["react", "react-dom", "node"],
     // DOM + ESNext 내장 라이브러리
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -57,8 +58,10 @@
     ".next/types/**/*.ts",
     "libs/generate-rss.ts",
     "libs/generateFeed.cjs",
-    "libs/post.js"
+    "libs/post.js",
+    "types/global.d.ts"
   ],
+
   // 제외할 디렉터리
   "exclude": ["node_modules", ".next"]
 }

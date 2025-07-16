@@ -1,5 +1,5 @@
-import { en } from '@/assets/locales/en';
-import { ko } from '@/assets/locales/ko';
+import { en } from '@/assets/lang/en';
+import { ko } from '@/assets/lang/ko';
 
 import type { Locale, Messages } from '@/types';
 

@@ -4,7 +4,7 @@ import React from 'react';
 import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 
-import { ButtonProps } from '../../../types';
+import { ButtonProps } from '@/types';
 
 import styles from '@/styles/button/Button.module.css';
 

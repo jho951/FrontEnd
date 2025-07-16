@@ -1,5 +1,5 @@
-import { SUPPORTED_LANGUAGES } from '@/constants';
+import { SUPPORTED_LOCALES } from '@/constants';
 
 export async function generateStaticParams() {
-  return SUPPORTED_LANGUAGES.map(lang => ({ lang }));
+  return SUPPORTED_LOCALES.map(lang => ({ lang }));
 }

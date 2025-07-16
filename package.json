@@ -2,7 +2,6 @@
   "name": "my-blog",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
       "eslint --fix",
@@ -15,13 +14,13 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "next dev",
-    "generate:rss": "ts-node -r tsconfig-paths/register libs/generate-rss.ts",
-    "build": "npm run generate:rss && next build",
     "start": "next start",
-    "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
-    "format": "prettier . --write",
-    "format:check": "prettier . --check"
+    "build": "npm run _generate:rss && next build",
+    "_generate:rss": "ts-node -r tsconfig-paths/register libs/generate-rss.ts",
+    "_lint": "eslint .",
+    "_typecheck": "tsc --noEmit",
+    "_format": "prettier . --write",
+    "_format:check": "prettier . --check"
   },
   "dependencies": {
     "@uiw/react-md-editor": "^4.0.7",

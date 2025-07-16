@@ -1,24 +1,34 @@
-import { FooterSection, SnsLink } from '@/types';
+import { FooterSection, FooterSnsLink, HeaderAuthLink, HeaderNavLink } from '@/types';
 
+/**
+ * 해당 페이지에서는 헤더가 렌더되지 않습니다.
+ */
 const HEADER_EXCLUDED_PATHS = ['/signin', '/signup'];
+/**
+ * 해당 페이지에서는 푸터가 렌더되지 않습니다.
+ */
 const FOOTER_EXCLUDED_PATHS = ['/signin', '/signup'];
 
-const SNS_LINK: SnsLink[] = [
-  {
-    name: 'RSS',
-    href: '/rss.xml',
-    icon: 'rss',
-    external: true,
-  },
-  {
-    name: 'GitHub',
-    href: 'https://github.com/jho951',
-    icon: 'gitHub',
-    external: true,
-  },
+/**
+ * 로그인 시 보여지는 링크
+ */
+const AUTH_LINK: HeaderAuthLink[] = [
+  { id: 5, href: '/mypage', label: 'My Page' },
+  { id: 6, href: '', label: 'Logout' },
 ];
 
-const NAV_LINK = [
+/**
+ * 비 로그인 시 보여지는 링크
+ */
+const NOT_AUTH_LINK: HeaderAuthLink[] = [
+  { id: 5, href: '/signin', label: 'Sign In' },
+  { id: 6, href: '/signup', label: 'Sign Up' },
+];
+
+/**
+ * GNB 메뉴
+ */
+const NAV_LINK: HeaderNavLink[] = [
   {
     id: 1,
     href: '/cs',
@@ -127,4 +137,30 @@ const FOOTER_LINK: FooterSection[] = [
   },
 ];
 
-export { HEADER_EXCLUDED_PATHS, FOOTER_EXCLUDED_PATHS, NAV_LINK, FOOTER_LINK, SNS_LINK };
+/**
+ * 푸터
+ */
+const SNS_LINK: FooterSnsLink[] = [
+  {
+    name: 'RSS',
+    href: '/rss.xml',
+    icon: 'rss',
+    external: true,
+  },
+  {
+    name: 'GitHub',
+    href: 'https://github.com/jho951',
+    icon: 'gitHub',
+    external: true,
+  },
+];
+
+export {
+  HEADER_EXCLUDED_PATHS,
+  FOOTER_EXCLUDED_PATHS,
+  AUTH_LINK,
+  NOT_AUTH_LINK,
+  NAV_LINK,
+  FOOTER_LINK,
+  SNS_LINK,
+};

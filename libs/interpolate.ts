@@ -1,8 +1,5 @@
-export function interpolate(
-  template: string,
-  variables: { [key: string]: string | number },
-): string {
-  return template.replace(/\{(\w+)\}/g, (match, key) => {
-    return key in variables ? String(variables[key]) : match;
-  });
+export function interpolate(template: string, vars: Record<string, unknown>): string {
+  return template.replace(/\{\{(\w+)\}\}/g, (_, key) =>
+    vars[key] != null ? String(vars[key]) : '',
+  );
 }

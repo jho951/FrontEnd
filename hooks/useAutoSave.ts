@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export function useAutosave<T>(value: T, delay: number, onSave: (value: T) => void) {
+function useAutosave<T>(value: T, delay: number, onSave: (value: T) => void) {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -19,3 +19,5 @@ export function useAutosave<T>(value: T, delay: number, onSave: (value: T) => vo
     };
   }, [value, delay, onSave]);
 }
+
+export { useAutosave };

@@ -3,7 +3,7 @@
 import { forwardRef } from 'react';
 import NextLink from 'next/link';
 
-import { LinkButtonProps } from '../../../types';
+import { LinkButtonProps } from '@/types';
 import styles from '@/styles/button/Button.module.css';
 
 const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(function LinkButton(

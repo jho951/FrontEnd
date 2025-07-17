@@ -37,8 +37,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: TypeScript 타입 검사
-        run: npm run typecheck
+      - name: Lint (ESLint)
+        run: npm run _lint
 
-      - name: Next.js 빌드
+      - name: Format Check (Prettier)
+        run: npm run _format:check
+
+      - name: Type Check (TypeScript)
+        run: npm run _typecheck
+
+      - name: Build (Next.js)
         run: npm run build

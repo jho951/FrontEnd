@@ -1,5 +1,5 @@
 echo "🏗️ eslint 확인 중..."
-npm run lint 
+npm run _lint 
 
 echo "🏗️ 빌드 확인 중..."
 npm run build

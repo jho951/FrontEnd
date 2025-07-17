@@ -9,7 +9,7 @@ const iconKeys = {
   moon: null,
   arrow: null,
   rss: null,
-  gitHub: null,
+  github: null,
   globe: null,
 } as const;
 

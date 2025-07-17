@@ -16,6 +16,7 @@ export function middleware(req: NextRequest) {
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
+    pathname === '/site.webmanifest' ||
     /\.(?:png|jpg|jpeg|svg|css|js|ico|woff2?|map)$/.test(pathname)
   ) {
     return NextResponse.next();

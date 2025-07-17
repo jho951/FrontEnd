@@ -17,6 +17,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html lang={DEFAULT_LANGUAGE} suppressHydrationWarning>
       <head>
+        <link rel="manifest" href="/site.webmanifest" />
         <RssScript />
         <AdsenseScript />
       </head>

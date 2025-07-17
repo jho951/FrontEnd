@@ -7,8 +7,9 @@ import { marked } from 'marked';
 import PreviewModal from '@/components/common/editor/PreviewModal';
 import MarkdownEditor from '@/components/common/editor/MarkdownEditor';
 
-import styles from '@/styles/features/EditPage.module.css';
 import { useAutosave } from '@/hooks/useAutoSave';
+
+import styles from '@/styles/features/EditPage.module.css';
 
 export default function EditPage() {
   const [value, setValue] = useState('**Hello Markdown!**');

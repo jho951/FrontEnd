@@ -7,16 +7,19 @@ import { SetHtmlLang } from '@/libs/set-html-lang';
 
 import type { LayoutProps } from '@/types';
 
-export default async function LocaleLayout({ children }: LayoutProps) {
+export default async function LocaleLayout({ children, modal }: LayoutProps) {
   const lang = await getServerCurrentLanguage();
   const { common: messages } = getTranslation(lang);
 
   return (
     <ThemeProvider>
-      <SetHtmlLang lang={lang} />;
+      <SetHtmlLang lang={lang} />
       <TranslationsProvider messages={messages} lang={lang}>
         <ClientLayoutWrapper>
-          <main> {children}</main>
+          <main>
+            {children}
+            {modal}
+          </main>
         </ClientLayoutWrapper>
       </TranslationsProvider>
     </ThemeProvider>

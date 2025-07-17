@@ -56,10 +56,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "libs/generate-rss.ts",
-    "libs/generateFeed.cjs",
-    "libs/post.js",
-    "types/global.d.ts"
+    "libs/*",
+    "libs/*",
+    "types/*"
   ],
 
   // 제외할 디렉터리

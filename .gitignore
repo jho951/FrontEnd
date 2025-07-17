@@ -14,6 +14,7 @@ node_modules/
 # ✅ Build outputs
 # -----------------------------
 .next/                   # Next.js 빌드 결과물
+.next/cache
 .out/                    # next export 결과물
 dist/                    # custom 빌드 아웃풋
 build/                   # 기타 빌드 디렉터리

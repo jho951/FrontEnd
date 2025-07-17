@@ -1,2 +1,8 @@
-npm run lint
-npm run typecheck
+echo "🧹 Lint 중..."
+npx lint-staged
+
+echo "🔎 타입 검사 중..."
+npm run _typecheck
+
+echo "🔎 prettier 검사 중..."
+npm run _format:check

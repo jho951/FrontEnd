@@ -1,32 +1,62 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { defaultLocale, locales } from './i18n-config';
+import { DEFAULT_LANGUAGE, SUPPORTED_LOCALES } from '@/constants';
+import type { Locale } from '@/types';
 
-const PUBLIC_FILE = /\.(.*)$/;
+const LOCALE_COOKIE = 'lang';
 
-function detectLocale(request: NextRequest): string {
-  const accept = request.headers.get('accept-language');
-  const lang = accept?.split(',')[0].split('-')[0];
-  return locales.includes(lang as any) ? lang! : defaultLocale;
+function isLocale(x: string): x is Locale {
+  return SUPPORTED_LOCALES.includes(x as Locale);
 }
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+export function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+  const segments = pathname.split('/').filter(Boolean);
 
-  if (pathname.startsWith('/_next') || pathname.includes('/api/') || PUBLIC_FILE.test(pathname)) {
+  // ✅ 정적 파일 및 API 경로 무시
+  if (
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/api') ||
+    /\.(?:png|jpg|jpeg|svg|css|js|ico|woff2?|map)$/.test(pathname)
+  ) {
     return NextResponse.next();
   }
+  const firstSegment = segments[0];
 
-  const pathnameLocale = pathname.split('/')[1];
-  if (locales.includes(pathnameLocale as any)) {
-    return NextResponse.next();
+  // ✅ 1. locale이 URL에 있는 경우 → 쿠키 저장 + 통과
+  if (isLocale(firstSegment)) {
+    const res = NextResponse.next();
+    res.cookies.set(LOCALE_COOKIE, firstSegment, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 30, // 30일
+      sameSite: 'lax',
+    });
+    return res;
   }
 
-  const locale = detectLocale(request);
-  const url = request.nextUrl.clone();
-  url.pathname = `/${locale}${pathname}`;
-  return NextResponse.redirect(url);
+  // ✅ 2. locale이 URL에 없는 경우 → 쿠키 또는 브라우저 감지로 locale 결정 후 redirect
+  const cookieLang = req.cookies.get(LOCALE_COOKIE)?.value;
+  const headerLang = req.headers.get('accept-language') ?? '';
+  const browserLang = headerLang.split(',')[0].split('-')[0];
+
+  const detectedLang: Locale =
+    cookieLang && isLocale(cookieLang)
+      ? cookieLang
+      : isLocale(browserLang)
+        ? browserLang
+        : DEFAULT_LANGUAGE;
+
+  const redirectUrl = req.nextUrl.clone();
+  redirectUrl.pathname = `/${detectedLang}${pathname}`;
+
+  const res = NextResponse.redirect(redirectUrl);
+  res.cookies.set(LOCALE_COOKIE, detectedLang, {
+    path: '/',
+    maxAge: 60 * 60 * 24 * 30,
+    sameSite: 'lax',
+  });
+  return res;
 }
 
 export const config = {
-  matcher: ['/((?!_next|api|favicon.ico).*)'],
+  matcher: ['/', '/:path*'],
 };

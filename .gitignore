@@ -13,10 +13,15 @@ node_modules/
 # -----------------------------
 # ✅ Build outputs
 # -----------------------------
-.next/           # Next.js 빌드
-.out/            # next export
-dist/            # custom 빌드 아웃풋 (libs 등)
-build/           # 다른 빌드 출력
+.next/                   # Next.js 빌드 결과물
+.out/                    # next export 결과물
+dist/                    # custom 빌드 아웃풋
+build/                   # 기타 빌드 디렉터리
+
+# 🔥 HMR / Webpack 개발 캐시 (강력 권장)
+.next/static/webpack/*
+.next/**/*.hot-update.*
+.next/**/*.map
 
 # -----------------------------
 # ⚙️ TypeScript
@@ -34,7 +39,7 @@ coverage/
 # 🔒 Environment variables
 # -----------------------------
 .env*
-!.env.example    # 예시 파일은 커밋 가능
+!.env.example
 
 # -----------------------------
 # 🐛 Debug logs
@@ -51,6 +56,7 @@ pnpm-debug.log*
 .DS_Store
 *.pem
 .vscode/
+.idea/
 
 # -----------------------------
 # 🧪 Vercel / Deployment
@@ -61,3 +67,11 @@ pnpm-debug.log*
 # 🎨 Formatting
 # -----------------------------
 .prettierignore
+
+# -----------------------------
+# 💡 기타 권장 무시 항목
+# -----------------------------
+*.local                # 로컬 환경 설정
+*.log                  # 기타 로그 파일
+*.swp                  # vim 임시 파일
+*.tmp                  # 임시 파일

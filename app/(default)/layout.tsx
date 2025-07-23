@@ -3,7 +3,7 @@ import BaseLayout from '@/features/layout/BaseLayout';
 
 import DefaultLayout from '@/features/layout/DefaultLayout';
 
-import { siteMetadata } from '@/libs/seo/meta-data';
+import { generateMetadata } from '@/libs/seo/meta-data';
 import { siteViewport } from '@/libs/seo/view-port';
 import { LayoutProps } from '@/types';
 
@@ -18,5 +18,5 @@ export default async function Layout({ children, modal, params }: LayoutProps) {
   );
 }
 
-export const metadata = siteMetadata;
+export { generateMetadata };
 export const viewport = siteViewport;

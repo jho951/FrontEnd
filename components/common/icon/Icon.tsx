@@ -1,7 +1,7 @@
 'use client';
 
 import type { IconProps } from '@/types';
-import { getIconComponent } from '@/libs/getIcon-component';
+import { getIconComponent } from '@/libs/utils/get-Icon';
 
 export default function Icon({ name, size = 24, className, ...props }: IconProps) {
   const SvgIcon = getIconComponent(name);

@@ -9,7 +9,7 @@ import {
   DEFAULT_AD_STYLE,
 } from '@/constants';
 
-import { pushAds } from '@/libs/adsense';
+import { pushAds } from '@/libs/adsense/google';
 
 import type { AdsenseSlotOptions } from '@/types';
 

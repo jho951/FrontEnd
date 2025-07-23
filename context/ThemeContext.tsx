@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 
-import { resolveInitialTheme } from '@/libs/theme';
+import { resolveInitialTheme } from '@/libs/theme/theme';
 
 import { Theme, ThemeContextProps } from '@/types';
 

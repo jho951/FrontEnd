@@ -9,4 +9,6 @@ const LANGUAGE_OPTIONS: LanguageOption[] = [
   { id: 2, value: 'ko', label: '한국어' },
 ];
 
-export { SUPPORTED_LOCALES, LANGUAGE_OPTIONS, DEFAULT_LANGUAGE };
+const LOCALE_COOKIE = 'lang';
+
+export { SUPPORTED_LOCALES, LANGUAGE_OPTIONS, DEFAULT_LANGUAGE, LOCALE_COOKIE };

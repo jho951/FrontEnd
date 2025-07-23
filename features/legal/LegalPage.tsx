@@ -17,7 +17,7 @@ export async function generateMetadata({
 }: {
   params: PageProps['params'];
 }): Promise<Metadata> {
-  const slug = params.slugs?.[1];
+  const slug = params.slug?.[1];
   return {
     title: slug ? `Legal - ${slug}` : 'Legal',
   };
@@ -25,7 +25,7 @@ export async function generateMetadata({
 
 // ✅ 실제 페이지
 export default async function LegalPage({ params }: PageProps) {
-  const slug = params.slugs?.[1];
+  const slug = params.slug?.[1];
   const content = slug ? legalContent[slug] : null;
 
   if (!slug || !content) {

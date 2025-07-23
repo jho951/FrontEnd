@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Icon from '@/components/common/icon/Icon';
 import Select from '@/components/common/select/Select';
 
-import { getLanguageCookie, setLanguageCookie } from '@/libs/cookie';
+import { getLanguageCookie, setLanguageCookie } from '@/libs/lang/cookie';
 
 import { DEFAULT_LANGUAGE, LANGUAGE_OPTIONS, COPY, SNS_LINK } from '@/constants';
 

@@ -1,9 +1,9 @@
 import { ClientLayoutWrapper } from '@/components/layout/wrapper/ClientLayoutWrapper';
 
 import { ThemeProvider, TranslationsProvider } from '@/context';
-import { getServerCurrentLanguage } from '@/libs/get-server-current-language';
-import { getTranslation } from '@/libs/get-translation';
-import { SetHtmlLang } from '@/libs/set-html-lang';
+import { getServerCurrentLanguage } from '@/libs/lang/get-server-language';
+import { getTranslation } from '@/libs/lang/translation';
+import { SetHtmlLang } from '@/libs/html/set-html-lang';
 
 import type { LayoutProps } from '@/types';
 

@@ -32,7 +32,6 @@ const nextConfig: NextConfig = {
       issuer: /\.[jt]sx?$/,
       use: ['@svgr/webpack'],
     });
-
     return config;
   },
   compress: true,

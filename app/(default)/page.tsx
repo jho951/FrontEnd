@@ -1,8 +1,6 @@
 import HomePage from '@/features/home/HomePage';
+import { DEFAULT_LOCALE } from '@/constants';
 
-import type { PageProps } from '@/types';
-
-export default async function Page({ params }: PageProps) {
-  const { lang } = await params;
-  return <HomePage lang={lang} />;
+export default function Page() {
+  return <HomePage lang={DEFAULT_LOCALE} />;
 }

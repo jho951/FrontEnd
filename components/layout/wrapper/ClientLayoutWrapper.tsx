@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 
 import SkipNav from '@/components/layout/header/SkipNav';
-import HeaderWrapper from '@/components/layout/wrapper/HeaderWrapper';
+import Header from '@/components/layout/header/Header';
 import Footer from '@/components/layout/footer/Footer';
 
 import { FOOTER_EXCLUDED_PATHS, HEADER_EXCLUDED_PATHS } from '@/constants';
@@ -16,7 +16,7 @@ export function ClientLayoutWrapper({ children }: { children: React.ReactNode })
   return (
     <>
       <SkipNav />
-      {shouldRenderHeader && <HeaderWrapper />}
+      {shouldRenderHeader && <Header />}
       {children}
       {shouldRenderFooter && <Footer />}
     </>

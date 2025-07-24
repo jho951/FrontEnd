@@ -1,69 +1,47 @@
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-
-import { motion } from 'framer-motion';
 
 import Icon from '@/components/common/icon/Icon';
 import PcNav from '@/components/layout/header/PcNav';
 import MobileNav from '@/components/layout/header/MobileNav';
 import HamburgerButton from '@/components/common/button/HamburgerButton';
 
-import { useScrollDetect, useScrollLock, useScrollY } from '@/hooks/useScroll';
-
-import type { HeaderProps } from '@/types';
+import { useScrollLock } from '@/hooks/useScroll';
 
 import styles from '@/styles/header/Header.module.css';
 
-function Header({ adOffset }: HeaderProps) {
+export default function Header() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const scrollY = useScrollY();
-  const isSticky = scrollY > adOffset;
-
-  const isScrolling = useScrollDetect(100);
   useScrollLock(menuOpen);
+  const toggleMenu = () => setMenuOpen(prev => !prev);
 
   return (
     <>
-      {menuOpen && <div className={styles.backdrop} onClick={() => setMenuOpen(v => !v)} />}
+      {menuOpen && <div className="backdrop" onClick={toggleMenu} />}
 
-      <motion.header
-        className={`${styles.header} ${menuOpen && styles.open}`}
-        initial={false}
-        animate={{ opacity: isScrolling ? 0.15 : 1 }}
-        transition={{ opacity: { duration: isScrolling ? 0.4 : 0.8, ease: 'easeInOut' } }}
-        style={{
-          position: isSticky ? 'fixed' : 'absolute',
-          boxShadow: isSticky ? '0 2px 8px rgba(0, 0, 0, 0.08)' : 'none',
-          top: isSticky ? 0 : adOffset + 10,
-        }}
-      >
-        <section className={styles.topRow}>
-          <h1>
-            <Link
-              className={styles.logoContainer}
-              href="/"
-              aria-label="홈으로 이동"
-              onClick={() => setMenuOpen(false)}
-            >
-              <Icon name="logo" size={44} />
-              <span className="sr-only">Skill Blog</span>
-            </Link>
-          </h1>
+      <header className={`${styles.header} ${menuOpen ? styles.headerOpen : ''}`}>
+        <div className={styles.topRow}>
+          <Link
+            className={styles.logoContainer}
+            href="/"
+            aria-label="홈으로 이동"
+            aria-current={pathname === '/' ? 'page' : undefined}
+            onClick={() => setMenuOpen(false)}
+          >
+            <Icon name="logo" size={44} />
+            <h1 className="sr-only">Skill Blog</h1>
+          </Link>
+
           <PcNav />
-          <div className={styles.btnContainer}>
-            <HamburgerButton
-              isOpen={menuOpen}
-              size={24}
-              onClick={() => setMenuOpen(v => !v)}
-              tabIndex={0}
-            />
-          </div>
-        </section>
 
-        <MobileNav isOpen={menuOpen} onClick={() => setMenuOpen(v => !v)} />
-      </motion.header>
+          <div className={styles.btnContainer}>
+            <HamburgerButton isOpen={menuOpen} size={18} onClick={toggleMenu} tabIndex={0} />
+          </div>
+        </div>
+        <MobileNav isOpen={menuOpen} onClick={toggleMenu} />
+      </header>
     </>
   );
 }
-
-export default Header;

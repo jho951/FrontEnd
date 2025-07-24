@@ -5,6 +5,7 @@
     // ESNext, Node·브라우저 양쪽에서 동작하도록
     "target": "ESNext",
     "module": "ESNext",
+
     "moduleResolution": "node",
     // JSON import 지원
     "resolveJsonModule": true,
@@ -49,6 +50,7 @@
       }
     ]
   },
+  "appDir": true,
 
   // 빌드 대상에 포함할 파일
   "include": [
@@ -57,7 +59,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "libs/**/*",
-    "types/global.d.ts"
+    "types/global.d.ts",
+    ".vscode/not-found.tsx"
   ],
 
   // 제외할 디렉터리

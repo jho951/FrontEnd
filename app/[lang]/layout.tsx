@@ -1,27 +1,21 @@
-import { ClientLayoutWrapper } from '@/components/layout/wrapper/ClientLayoutWrapper';
-
-import { ThemeProvider, TranslationsProvider } from '@/context';
-import { getServerCurrentLanguage } from '@/libs/lang/get-server-language';
-import { getTranslation } from '@/libs/lang/translation';
-import { SetHtmlLang } from '@/libs/html/set-html-lang';
+import DefaultLayout from '@/features/layout/DefaultLayout';
+import RssScript from '@/components/scripts/RssScript';
+import AdsenseScript from '@/components/scripts/AdsenseScript';
+import AdsenseDebugger from '@/components/scripts/AdsenseDebugger';
 
 import type { LayoutProps } from '@/types';
 
-export default async function LocaleLayout({ children, modal }: LayoutProps) {
-  const lang = await getServerCurrentLanguage();
-  const { common: messages } = getTranslation(lang);
+export default async function LangLayout({ children, modal, params }: LayoutProps) {
+  const { lang } = await params;
 
   return (
-    <ThemeProvider>
-      <SetHtmlLang lang={lang} />
-      <TranslationsProvider messages={messages} lang={lang}>
-        <ClientLayoutWrapper>
-          <main>
-            {children}
-            {modal}
-          </main>
-        </ClientLayoutWrapper>
-      </TranslationsProvider>
-    </ThemeProvider>
+    <>
+      <RssScript lang={lang} />
+      <AdsenseScript />
+      <AdsenseDebugger />
+      <DefaultLayout modal={modal} params={{ lang }}>
+        {children}
+      </DefaultLayout>
+    </>
   );
 }

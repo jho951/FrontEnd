@@ -9,18 +9,18 @@ import Select from '@/components/common/select/Select';
 
 import { getLanguageCookie, setLanguageCookie } from '@/libs/lang/cookie';
 
-import { DEFAULT_LANGUAGE, LANGUAGE_OPTIONS, COPY, SNS_LINK } from '@/constants';
+import { DEFAULT_LOCALE, LANGUAGE_OPTIONS, COPY, SNS_LINK } from '@/constants';
 
 import type { Locale, LanguageOption } from '@/types';
 import styles from '@/styles/footer/FooterSns.module.css';
 
 // ✅ 초기 언어 결정 로직
 function resolveInitialLang(): Locale {
-  if (typeof window === 'undefined') return DEFAULT_LANGUAGE;
+  if (typeof window === 'undefined') return DEFAULT_LOCALE;
 
   const cookieLang = getLanguageCookie();
   const isValid = LANGUAGE_OPTIONS.some(l => l.value === cookieLang);
-  return isValid ? (cookieLang as Locale) : DEFAULT_LANGUAGE;
+  return isValid ? (cookieLang as Locale) : DEFAULT_LOCALE;
 }
 
 export default function FooterSns() {

@@ -1,50 +1,48 @@
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
 
 import { DESCRIPTION, PROJECT_URL, TITLE } from '@/constants';
 
-async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: {
-      default: TITLE,
-      template: `%s | ${TITLE}`,
-    },
+const siteMetadata: Metadata = {
+  title: {
+    default: TITLE,
+    template: `%s | ${TITLE}`,
+  },
+  description: DESCRIPTION,
+  metadataBase: new URL(PROJECT_URL),
+
+  openGraph: {
+    title: TITLE,
     description: DESCRIPTION,
-    metadataBase: new URL(PROJECT_URL),
+    type: 'website',
+    url: PROJECT_URL,
+    siteName: TITLE,
+  },
 
-    openGraph: {
-      title: TITLE,
-      description: DESCRIPTION,
-      type: 'website',
-      url: PROJECT_URL,
-      siteName: TITLE,
-    },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 
-    twitter: {
-      card: 'summary_large_image',
-      title: TITLE,
-      description: DESCRIPTION,
-    },
+  alternates: {
+    canonical: PROJECT_URL,
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
 
-    alternates: {
-      canonical: PROJECT_URL,
-    },
-    icons: {
-      icon: '/favicon.ico',
-      apple: '/apple-touch-icon.png',
-    },
-    manifest: '/site.webmanifest',
-
-    robots: {
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
       index: true,
       follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-image-preview': 'large',
-      },
+      'max-image-preview': 'large',
     },
-  };
-}
+  },
+};
 
 const notFoundMetadata: Metadata = {
   title: '404 페이지를 찾을 수 없습니다 - 사이트명',
@@ -68,4 +66,4 @@ const notFoundMetadata: Metadata = {
   },
 };
 
-export { generateMetadata, notFoundMetadata };
+export { siteMetadata, notFoundMetadata };

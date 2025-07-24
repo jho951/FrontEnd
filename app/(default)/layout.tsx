@@ -1,22 +1,21 @@
-import { DEFAULT_LANGUAGE } from '@/constants';
-import BaseLayout from '@/features/layout/BaseLayout';
-
 import DefaultLayout from '@/features/layout/DefaultLayout';
+import RssScript from '@/components/scripts/RssScript';
+import AdsenseScript from '@/components/scripts/AdsenseScript';
+import AdsenseDebugger from '@/components/scripts/AdsenseDebugger';
 
-import { generateMetadata } from '@/libs/seo/meta-data';
-import { siteViewport } from '@/libs/seo/view-port';
-import { LayoutProps } from '@/types';
+import type { LayoutProps } from '@/types';
 
-export default async function Layout({ children, modal, params }: LayoutProps) {
-  const lang = DEFAULT_LANGUAGE;
+export default function LangLayout({ children, modal, params }: LayoutProps) {
+  const { lang } = params;
+
   return (
-    <BaseLayout lang={lang}>
-      <DefaultLayout modal={modal} params={params}>
+    <>
+      <RssScript lang={lang} />
+      <AdsenseScript />
+      <AdsenseDebugger />
+      <DefaultLayout modal={modal} params={{ lang }}>
         {children}
       </DefaultLayout>
-    </BaseLayout>
+    </>
   );
 }
-
-export { generateMetadata };
-export const viewport = siteViewport;

@@ -15,4 +15,5 @@ const DIGITS: Record<string, string[]> = {
   '4': ['1001', '1001', '1001', '1111', '0001', '0001', '0001'],
   '0': ['0110', '1001', '1001', '1001', '1001', '1001', '0110'],
 };
+
 export { TITLE, DESCRIPTION, COPY, PROJECT_URL, NODE_ENV, SCROLL_DELTA, MOBILE_BREAKPOINT, DIGITS };

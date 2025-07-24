@@ -1,5 +1,14 @@
-export default function RssScript() {
+type Props = { lang: string };
+
+export default function RssLink({ lang }: Props) {
+  const href = lang === 'ko' ? '/rss.xml' : `/rss-${lang}.xml`;
+
   return (
-    <link rel="alternate" type="application/rss+xml" title="내 개발 블로그 RSS" href="/rss.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`개발 블로그 RSS (${lang})`}
+      href={href}
+    />
   );
 }

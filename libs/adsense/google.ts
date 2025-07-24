@@ -10,7 +10,7 @@ import { AdsByGoogle, AdsbygoogleConfig } from '@/types';
  * const ads = getAdsByGoogle();
  */
 function getAdsByGoogle(): AdsByGoogle {
-  return (window.adsbygoogle = window.adsbygoogle || []);
+  return (window.adsbygoogle = (window.adsbygoogle || []) as AdsByGoogle);
 }
 
 /**

@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { DEFAULT_LANGUAGE, SUPPORTED_LOCALES } from '@/constants';
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/constants';
 import type { Locale } from '@/types';
 
 export function getPreferredLanguage(request: NextRequest): Locale {
@@ -12,5 +12,5 @@ export function getPreferredLanguage(request: NextRequest): Locale {
       return short as Locale;
     }
   }
-  return DEFAULT_LANGUAGE;
+  return DEFAULT_LOCALE;
 }

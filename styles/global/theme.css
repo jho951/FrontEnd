@@ -25,6 +25,41 @@
 
   --color-gray: #e5e7eb;
   --color-gray-rgb: 229, 231, 235;
+
+  --color-bg-gray: rgb(243, 244, 246);
+  --color-bg-gray-rgb: 243, 244, 246;
+
+  --color-bg-second-gray: rgb(226, 232, 240);
+  --color-bg-second-gray-rgb: 226, 232, 240;
+
+  --color-bg-third-gray: rgb(209, 213, 219);
+  --color-bg-third-gray-rgb: 209, 213, 219;
+
+  --color-glass-light: rgba(var(--color-bg-gray-rgb), 0.65);
+  --color-glass-dark: rgba(var(--color-bg-gray-rgb), 0.2);
+  --color-glass-white: rgba(255, 255, 255, 0.4);
+  --color-glass-black: rgba(0, 0, 0, 0.4);
+
+  --color-success: #34d399;
+  --color-success-rgb: 52, 211, 153;
+
+  --color-warning: #facc15;
+  --color-warning-rgb: 250, 204, 21;
+
+  --color-danger: #f87171;
+  --color-danger-rgb: 248, 113, 113;
+
+  --color-border: rgba(var(--color-black-rgb), 0.05);
+  --color-border-light: rgba(0, 0, 0, 0.03);
+  --color-border-heavy: rgba(0, 0, 0, 0.1);
+
+  --color-surface: #f9fafb;
+  --color-surface-hover: #f3f4f6;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
 }
 
 :root.dark {
@@ -51,4 +86,28 @@
 
   --color-heading: #c2e4ff;
   --color-heading-rgb: 194, 228, 255;
+
+  --color-bg-gray: rgb(31, 41, 55);
+  --color-bg-gray-rgb: 31, 41, 55;
+
+  --color-bg-second-gray: rgb(55, 65, 81);
+  --color-bg-second-gray-rgb: 55, 65, 81;
+
+  --color-bg-third-gray: rgb(75, 85, 99);
+  --color-bg-third-gray-rgb: 75, 85, 99;
+
+  --color-glass-light: rgba(var(--color-bg-gray-rgb), 0.4);
+  --color-glass-dark: rgba(var(--color-bg-gray-rgb), 0.65);
+
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-light: rgba(255, 255, 255, 0.04);
+  --color-border-heavy: rgba(255, 255, 255, 0.12);
+
+  --color-surface: #1f2937;
+  --color-surface-hover: #374151;
+
+  --shadow-xs: 0 1px 2px rgba(255, 255, 255, 0.03);
+  --shadow-sm: 0 1px 3px rgba(255, 255, 255, 0.06);
+  --shadow-md: 0 4px 6px rgba(255, 255, 255, 0.08);
+  --shadow-lg: 0 10px 15px rgba(255, 255, 255, 0.1);
 }

@@ -1,19 +1,14 @@
-import type { AdsbygoogleConfig } from '@/types';
-
-/**
- * 전역 Window 객체에 `adsbygoogle` 속성을 추가합니다.
- */
+// types/global.d.ts (또는 layout.tsx 포함 상단)
 declare global {
   interface Window {
-    adsbygoogle: AdsbygoogleConfig[];
+    adsbygoogle: unknown[];
   }
 }
 
-/**
- * SVG 파일을 React 컴포넌트로 불러올 수 있게 하는 모듈 선언입니다.
- */
-declare module '*.svg' {
-  import * as React from 'react';
-  const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
-  export default ReactComponent;
-}
+type AdsbygoogleWindow = Window & {
+  adsbygoogle: unknown[];
+};
+
+(window as AdsbygoogleWindow).adsbygoogle = (window as AdsbygoogleWindow).adsbygoogle || [];
+
+(window as AdsbygoogleWindow).adsbygoogle.push({});

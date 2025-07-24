@@ -17,7 +17,7 @@ export default function HeaderWrapper() {
   return (
     <>
       <AdBanner ref={adRef} slotId={ADSENSE_SLOT_ID} />
-      <Header adOffset={adHeight} />
+      <Header />
     </>
   );
 }

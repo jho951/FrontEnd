@@ -13,7 +13,7 @@ type BaseLayoutProps = {
 type LayoutProps = {
   children: React.ReactNode;
   modal: React.ReactNode;
-  params: { locale: Locale };
+  params: { lang: Locale };
 };
 
 export type { PageProps, LayoutProps, BaseLayoutProps };

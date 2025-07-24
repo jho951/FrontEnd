@@ -1,8 +1,8 @@
 import { LanguageOption, Locale } from '@/types';
 
-const DEFAULT_LANGUAGE: Locale = 'ko';
+const DEFAULT_LOCALE: Locale = 'ko';
 
-const SUPPORTED_LOCALES: Locale[] = ['en', 'ko'];
+const SUPPORTED_LOCALES: Locale[] = ['en'];
 
 const LANGUAGE_OPTIONS: LanguageOption[] = [
   { id: 1, value: 'en', label: 'English' },
@@ -11,4 +11,4 @@ const LANGUAGE_OPTIONS: LanguageOption[] = [
 
 const LOCALE_COOKIE = 'lang';
 
-export { SUPPORTED_LOCALES, LANGUAGE_OPTIONS, DEFAULT_LANGUAGE, LOCALE_COOKIE };
+export { SUPPORTED_LOCALES, LANGUAGE_OPTIONS, DEFAULT_LOCALE, LOCALE_COOKIE };

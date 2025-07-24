@@ -148,9 +148,9 @@ const SNS_LINK: FooterSnsLink[] = [
     external: true,
   },
   {
-    name: 'GitHub',
+    name: 'Git',
     href: 'https://github.com/jho951',
-    icon: 'github',
+    icon: 'git',
     external: true,
   },
 ];

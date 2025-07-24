@@ -5,7 +5,6 @@
     // ESNext, Node·브라우저 양쪽에서 동작하도록
     "target": "ESNext",
     "module": "ESNext",
-
     "moduleResolution": "node",
     // JSON import 지원
     "resolveJsonModule": true,

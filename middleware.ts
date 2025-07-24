@@ -1,4 +1,3 @@
-// middleware.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { LOCALE_COOKIE, SUPPORTED_LOCALES, DEFAULT_LOCALE } from '@/constants';
 import type { Locale } from '@/types';
@@ -12,20 +11,21 @@ export function middleware(req: NextRequest) {
   const segments = pathname.split('/').filter(Boolean);
   const firstSegment = segments[0];
 
-  // 정적 리소스 통과
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
     /\.(png|jpe?g|svg|css|js|ico|woff2?|map)$/.test(pathname)
-  )
+  ) {
     return NextResponse.next();
-
-  // /ko 또는 /ko/* → / 로 리디렉션
-  if (firstSegment === DEFAULT_LOCALE) {
-    return NextResponse.redirect(new URL('/', req.url));
   }
 
-  // / → 쿠키만 설정
+  if (firstSegment === DEFAULT_LOCALE) {
+    const restPath = segments.slice(1).join('/');
+    const url = req.nextUrl.clone();
+    url.pathname = `/${restPath}`;
+    return NextResponse.redirect(url);
+  }
+
   if (pathname === '/') {
     const res = NextResponse.next();
     res.cookies.set(LOCALE_COOKIE, DEFAULT_LOCALE, {
@@ -36,7 +36,6 @@ export function middleware(req: NextRequest) {
     return res;
   }
 
-  // 다국어 경로 → 쿠키 설정
   if (isLocale(firstSegment)) {
     const res = NextResponse.next();
     res.cookies.set(LOCALE_COOKIE, firstSegment, {
@@ -45,6 +44,14 @@ export function middleware(req: NextRequest) {
       sameSite: 'lax',
     });
     return res;
+  }
+
+  const lang = req.cookies.get(LOCALE_COOKIE)?.value ?? DEFAULT_LOCALE;
+
+  if (lang !== DEFAULT_LOCALE && isLocale(lang)) {
+    const url = req.nextUrl.clone();
+    url.pathname = `/${lang}${pathname}`;
+    return NextResponse.redirect(url);
   }
 
   return NextResponse.next();

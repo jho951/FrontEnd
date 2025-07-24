@@ -14,7 +14,9 @@ import styles from '@/styles/header/Header.module.css';
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+
   useScrollLock(menuOpen);
+
   const toggleMenu = () => setMenuOpen(prev => !prev);
 
   return (

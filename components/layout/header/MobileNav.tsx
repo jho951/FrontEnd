@@ -2,12 +2,12 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import Icon from '@/components/common/icon/Icon';
+import DropdownWrapper from '@/components/common/animation/DropdownWrapper';
 
 import { NAV_LINK } from '@/constants';
 import { HeaderMenuOpenProps } from '@/types';
 
 import styles from '@/styles/header/MobileNav.module.css';
-import DropdownWrapper from '@/components/common/animation/DropdownWrapper';
 
 export default function MobileNav({ isOpen, onClick }: HeaderMenuOpenProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);

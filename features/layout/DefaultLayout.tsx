@@ -6,7 +6,7 @@ import { getTranslation } from '@/libs/lang/translation';
 
 import type { LayoutProps } from '@/types';
 
-export default async function DefaultLayout({ children, modal, params }: LayoutProps) {
+export default async function DefaultLayout({ children, params }: LayoutProps) {
   const { lang } = await params;
   const { common: messages } = getTranslation(lang);
 
@@ -15,7 +15,6 @@ export default async function DefaultLayout({ children, modal, params }: LayoutP
       <SetHtmlLang lang={lang} />
       <TranslationsProvider messages={messages} lang={lang}>
         <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
-        {modal}
       </TranslationsProvider>
     </ThemeProvider>
   );

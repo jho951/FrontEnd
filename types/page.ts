@@ -8,6 +8,7 @@ type PageProps = {
 type BaseLayoutProps = {
   lang: Locale;
   children: React.ReactNode;
+  modal: React.ReactNode;
 };
 
 type LayoutProps = {

@@ -42,14 +42,10 @@ export default function DropdownWrapper({ isOpen, children, id }: DropdownProps)
       id={id}
       ref={ref}
       role="region"
-      aria-expanded={isOpen}
       aria-hidden={!isOpen}
       className={`${styles.dropdownWrapper} ${isOpen ? styles.dropdownWrapperOpen : ''}`}
       style={{
         maxHeight: height,
-        overflow: 'hidden',
-        transition: 'max-height 0.3s ease',
-        willChange: 'max-height',
       }}
     >
       {children}

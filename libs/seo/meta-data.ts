@@ -8,13 +8,13 @@ const siteMetadata: Metadata = {
     template: `%s | ${TITLE}`,
   },
   description: DESCRIPTION,
-  metadataBase: new URL(PROJECT_URL),
+  metadataBase: new URL(PROJECT_URL || 'http://localhost:3000'),
 
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
     type: 'website',
-    url: PROJECT_URL,
+    url: PROJECT_URL || 'http://localhost:3000',
     siteName: TITLE,
   },
 
@@ -25,7 +25,7 @@ const siteMetadata: Metadata = {
   },
 
   alternates: {
-    canonical: PROJECT_URL,
+    canonical: PROJECT_URL || 'http://localhost:3000',
   },
   icons: {
     icon: '/favicon.ico',
@@ -45,23 +45,22 @@ const siteMetadata: Metadata = {
 };
 
 const notFoundMetadata: Metadata = {
-  title: '404 페이지를 찾을 수 없습니다 - 사이트명',
+  title: `404 페이지를 찾을 수 없습니다 - ${TITLE}`,
   description: '요청하신 페이지를 찾을 수 없습니다. URL을 확인하거나 홈으로 이동하세요.',
   robots: {
     index: false,
     follow: false,
   },
   openGraph: {
-    title: '404 페이지를 찾을 수 없습니다 - 사이트명',
+    title: `404 페이지를 찾을 수 없습니다 - ${TITLE}`,
     description: '요청하신 페이지를 찾을 수 없습니다. URL을 확인하거나 홈으로 이동하세요.',
-    url: 'https://example.com/not-found',
-    siteName: '사이트명',
+    siteName: TITLE,
     locale: 'ko_KR',
     type: 'website',
   },
   twitter: {
     card: 'summary',
-    title: '404 페이지를 찾을 수 없습니다 - 사이트명',
+    title: `404 페이지를 찾을 수 없습니다 - ${TITLE}`,
     description: '요청하신 페이지를 찾을 수 없습니다. URL을 확인하거나 홈으로 이동하세요.',
   },
 };

@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import type { PageProps } from '@/types';
-import styles from '@/styles/features/LegalModal.module.css';
+import styles from '@/styles/features/LegalPage.module.css';
 
 const legalContent: Record<string, string> = {
   privacy: 'This is our Privacy Policy.',

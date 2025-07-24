@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
 
 import Icon from '@/components/common/icon/Icon';
-import DropdownAnimate from '@/components/common/animation/DropdownAnimate';
+import DropdownWrapper from '@/components/common/animation/DropdownWrapper';
 
 import { NAV_LINK } from '@/constants';
-
 import { HeaderMenuOpenProps } from '@/types';
 
 import styles from '@/styles/header/MobileNav.module.css';
@@ -19,59 +17,47 @@ export default function MobileNav({ isOpen, onClick }: HeaderMenuOpenProps) {
   };
 
   return (
-    <AnimatePresence initial={false}>
-      {isOpen && (
-        <motion.nav
-          className={styles.container}
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 'auto', opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.2, ease: 'easeOut' }}
-        >
-          {NAV_LINK.map((item, idx) => (
-            <div key={item.id} className={styles.section}>
-              {item.children ? (
-                <>
-                  <button
-                    className={styles.toggle}
-                    onClick={() => toggle(idx)}
-                    aria-expanded={openIndex === idx}
-                    aria-controls={`mobile-submenu-${idx}`}
-                    aria-haspopup="true"
-                  >
-                    {item.label}
-                    <Icon
-                      className={`${styles.icon} ${openIndex === idx ? styles.open : ''}`}
-                      name="arrow"
-                      size={20}
-                    />
-                  </button>
-
-                  <AnimatePresence initial={false}>
-                    {openIndex === idx && (
-                      <DropdownAnimate>
-                        <ul id={`mobile-submenu-${idx}`} className={styles.dropdown}>
-                          {item.children.map(sub => (
-                            <li key={sub.href}>
-                              <Link href={sub.href} className={styles.link} onClick={onClick}>
-                                {sub.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </DropdownAnimate>
-                    )}
-                  </AnimatePresence>
-                </>
-              ) : (
-                <Link href={item.href ?? '#'} className={styles.link} onClick={onClick}>
-                  {item.label}
-                </Link>
-              )}
+    <nav
+      className={`${styles.container} ${isOpen ? styles.open : styles.closed}`}
+      aria-hidden={!isOpen}
+    >
+      {NAV_LINK.map((item, idx) => (
+        <div key={item.id} className={styles.section}>
+          {item.children ? (
+            <div className={styles.itemWrapper}>
+              <button
+                className={styles.toggle}
+                onClick={() => toggle(idx)}
+                aria-expanded={openIndex === idx}
+                aria-controls={`mobile-submenu-${idx}`}
+                aria-haspopup="true"
+              >
+                {item.label}
+                <span
+                  className={`${styles.iconWrapper} ${openIndex === idx ? styles.iconOpen : ''}`}
+                >
+                  <Icon name="arrow" size={20} />
+                </span>
+              </button>
+              <DropdownWrapper isOpen={openIndex === idx} id="gnb-children">
+                <ul id={`mobile-submenu-${idx}`} className={styles.dropdown}>
+                  {item.children.map(sub => (
+                    <li key={sub.href}>
+                      <Link href={sub.href} className={styles.link} onClick={onClick}>
+                        {sub.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </DropdownWrapper>
             </div>
-          ))}
-        </motion.nav>
-      )}
-    </AnimatePresence>
+          ) : (
+            <Link href={item.href ?? '#'} className={styles.link} onClick={onClick}>
+              {item.label}
+            </Link>
+          )}
+        </div>
+      ))}
+    </nav>
   );
 }

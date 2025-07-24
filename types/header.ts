@@ -1,5 +1,7 @@
 interface HeaderProps {
   adOffset: number;
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 type HeaderMenuOpenProps = {

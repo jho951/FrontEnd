@@ -1,5 +1,5 @@
 import { cookies, headers } from 'next/headers';
-import { DEFAULT_LANGUAGE, SUPPORTED_LOCALES } from '@/constants';
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/constants';
 import type { Locale } from '@/types';
 
 export async function getServerCurrentLanguage(): Promise<Locale> {
@@ -20,5 +20,5 @@ export async function getServerCurrentLanguage(): Promise<Locale> {
   }
 
   // 3. 기본 fallback
-  return DEFAULT_LANGUAGE;
+  return DEFAULT_LOCALE;
 }

@@ -118,7 +118,7 @@ const FOOTER_LINK: FooterSection[] = [
     title: 'Legal',
 
     links: [
-      { label: 'Privacy', href: '/legal/privacy', target: '_blank' },
+      { label: 'Privacy', href: '/legal/privacy' },
       { label: 'Terms', href: '/legal/terms', target: '_blank' },
       { label: 'Security', href: '/legal/security', target: '_blank' },
       { label: 'ESG', href: '/legal/esg' },
@@ -148,9 +148,9 @@ const SNS_LINK: FooterSnsLink[] = [
     external: true,
   },
   {
-    name: 'GitHub',
+    name: 'Git',
     href: 'https://github.com/jho951',
-    icon: 'gitHub',
+    icon: 'git',
     external: true,
   },
 ];

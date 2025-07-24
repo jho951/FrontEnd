@@ -2,6 +2,7 @@
   "name": "my-blog",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
       "eslint --fix",
@@ -11,12 +12,15 @@
       "prettier --write"
     ]
   },
+  "engines": {
+    "node": ">=20.17.0"
+  },
   "scripts": {
     "prepare": "husky install",
     "dev": "next dev",
     "start": "next start",
     "build": "npm run _generate:rss && next build",
-    "_generate:rss": "ts-node -r tsconfig-paths/register libs/generate-rss.ts",
+    "_generate:rss": "cross-env NODE_OPTIONS=--loader=ts-node/esm ts-node --esm libs/rss/generate.ts",
     "_lint": "eslint .",
     "_typecheck": "tsc --noEmit -p tsconfig.json",
     "_format": "prettier . --write",
@@ -46,6 +50,7 @@
     "@types/webpack": "^5.28.5",
     "@typescript-eslint/eslint-plugin": "^8.37.0",
     "@typescript-eslint/parser": "^8.37.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.1",
     "eslint-config-next": "^15.4.1",
     "eslint-config-prettier": "^10.1.5",

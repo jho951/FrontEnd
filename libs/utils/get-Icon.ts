@@ -13,6 +13,8 @@ function getIconComponent(name: IconName): SvgComponent {
       return dynamic(() => import('@/assets/icons/arrow.svg'), { ssr: false }) as SvgComponent;
     case 'rss':
       return dynamic(() => import('@/assets/icons/rss.svg'), { ssr: false }) as SvgComponent;
+    case 'git':
+      return dynamic(() => import('@/assets/icons/git.svg'), { ssr: false }) as SvgComponent;
     case 'globe':
       return dynamic(() => import('@/assets/icons/globe.svg'), { ssr: false }) as SvgComponent;
 

@@ -1,24 +1,17 @@
-import { ClientLayoutWrapper } from '@/components/layout/wrapper/ClientLayoutWrapper';
-
-import { ThemeProvider, TranslationsProvider } from '@/context';
-import { getServerCurrentLanguage } from '@/libs/get-server-current-language';
-import { getTranslation } from '@/libs/get-translation';
-import { SetHtmlLang } from '@/libs/set-html-lang';
+import DefaultLayout from '@/features/layout/DefaultLayout';
+import RssScript from '@/components/scripts/RssScript';
 
 import type { LayoutProps } from '@/types';
 
-export default async function LocaleLayout({ children }: LayoutProps) {
-  const lang = await getServerCurrentLanguage();
-  const { common: messages } = getTranslation(lang);
+export default async function Layout({ children, modal, params }: LayoutProps) {
+  const { lang } = await params;
 
   return (
-    <ThemeProvider>
-      <SetHtmlLang lang={lang} />;
-      <TranslationsProvider messages={messages} lang={lang}>
-        <ClientLayoutWrapper>
-          <main> {children}</main>
-        </ClientLayoutWrapper>
-      </TranslationsProvider>
-    </ThemeProvider>
+    <>
+      <RssScript lang={lang} />
+      <DefaultLayout modal={modal} params={{ lang }}>
+        {children}
+      </DefaultLayout>
+    </>
   );
 }

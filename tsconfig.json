@@ -49,6 +49,7 @@
       }
     ]
   },
+  "appDir": true,
 
   // 빌드 대상에 포함할 파일
   "include": [
@@ -57,7 +58,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "libs/**/*",
-    "types/global.d.ts"
+    "types/svg.d.ts",
+
+    ".vscode/not-found.tsx"
   ],
 
   // 제외할 디렉터리

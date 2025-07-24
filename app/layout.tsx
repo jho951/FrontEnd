@@ -1,29 +1,23 @@
-import type { ReactNode } from 'react';
+import { siteMetadata } from '@/libs/seo/meta-data';
+import { siteViewport } from '@/libs/seo/view-port';
+import { BaseLayoutProps } from '@/types';
 
-import RssScript from '@/components/scripts/RssScript';
-import AdsenseScript from '@/components/scripts/AdsenseScript';
-
-import { DEFAULT_LANGUAGE } from '@/constants';
-
-import { siteMetadata } from '@/libs/meta-data';
-import { siteViewport } from '@/libs/view-port';
-
+import '@/styles/global/reset.css';
 import '@/styles/global/font.css';
 import '@/styles/global/theme.css';
-import '@/styles/global/reset.css';
 import '@/styles/global/class.css';
 
-export default async function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children, modal }: BaseLayoutProps) {
   return (
-    <html lang={DEFAULT_LANGUAGE} suppressHydrationWarning>
+    <html lang="ko" suppressHydrationWarning>
       <head>
-        <RssScript />
-        <AdsenseScript />
+        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body>{children}</body>
+      {modal}
     </html>
   );
 }
 
-export const metadata = siteMetadata;
+export const generateMetadata = async () => siteMetadata;
 export const viewport = siteViewport;

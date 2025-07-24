@@ -1,10 +1,10 @@
-'use client';
+import { useMemo } from 'react';
 
-import type { IconProps } from '@/types';
-import { getIconComponent } from '@/libs/getIcon-component';
+import { getIconComponent } from '@/libs/utils/get-Icon';
+import { IconProps } from '@/types';
 
 export default function Icon({ name, size = 24, className, ...props }: IconProps) {
-  const SvgIcon = getIconComponent(name);
+  const SvgIcon = useMemo(() => getIconComponent(name), [name]);
 
   if (!SvgIcon) return null;
 

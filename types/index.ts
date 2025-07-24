@@ -4,6 +4,11 @@
 export * from './ad';
 
 /**
+ * 애니메이션 타입
+ */
+export * from './animation';
+
+/**
  * context 타입
  */
 export * from './theme';

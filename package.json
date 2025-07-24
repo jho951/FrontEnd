@@ -12,6 +12,9 @@
       "prettier --write"
     ]
   },
+  "engines": {
+    "node": ">=20.17.0"
+  },
   "scripts": {
     "prepare": "husky install",
     "dev": "next dev",

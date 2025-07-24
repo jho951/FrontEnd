@@ -58,7 +58,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "libs/**/*",
-    "types/global.d.ts",
+    "types/svg.d.ts",
+
     ".vscode/not-found.tsx"
   ],
 

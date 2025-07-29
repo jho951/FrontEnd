@@ -3,10 +3,10 @@
 import { createPortal } from 'react-dom';
 import { useEffect, useState } from 'react';
 
+import { useScrollLock } from '@/hooks/useScroll';
 import { PreviewModalProps } from '@/types';
 
 import styles from '@/styles/editor/PreviewModal.module.css';
-import { useScrollLock } from '@/hooks/useScroll';
 
 export default function PreviewModal({ content, onClose }: PreviewModalProps) {
   const [mounted, setMounted] = useState(false);

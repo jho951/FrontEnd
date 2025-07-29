@@ -9,5 +9,5 @@ export default async function Page({ params }: PageProps) {
   if (!SUPPORTED_LOCALES.includes(lang)) {
     notFound();
   }
-  return <HomePage lang={lang} />;
+  return <HomePage />;
 }

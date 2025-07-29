@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 
 import { useTheme } from '@/context';
-import { MarkdownEditorProps } from '@/types/editor/markdownEditor';
+import { MarkdownEditorProps } from '@/types/markdownEditor';
 
 const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false });
 

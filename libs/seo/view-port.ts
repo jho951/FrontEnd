@@ -5,14 +5,15 @@ export const siteViewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  interactiveWidget: 'resizes-content',
   themeColor: [
     {
       media: '(prefers-color-scheme: light)',
-      color: '#f6fdf7',
+      color: '#f5faff',
     },
     {
       media: '(prefers-color-scheme: dark)',
-      color: '#121a12',
+      color: '#121b25',
     },
   ],
 };

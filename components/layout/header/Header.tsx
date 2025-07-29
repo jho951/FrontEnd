@@ -1,18 +1,17 @@
 import { useState } from 'react';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 
-import Icon from '@/components/common/icon/Icon';
+import Logo from '@/components/layout/header/Logo';
 import PcNav from '@/components/layout/header/PcNav';
 import MobileNav from '@/components/layout/header/MobileNav';
 import HamburgerButton from '@/components/common/button/HamburgerButton';
 
+import { GNB } from '@/constants';
 import { useScrollLock } from '@/hooks/useScroll';
 
 import styles from '@/styles/header/Header.module.css';
+import { HeaderProps } from '@/types';
 
-export default function Header() {
-  const pathname = usePathname();
+export default function Header({ pathname }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useScrollLock(menuOpen);
@@ -25,24 +24,15 @@ export default function Header() {
 
       <header className={`${styles.header} ${menuOpen ? styles.headerOpen : ''}`}>
         <div className={styles.topRow}>
-          <Link
-            className={styles.logoContainer}
-            href="/"
-            aria-label="홈으로 이동"
-            aria-current={pathname === '/' ? 'page' : undefined}
-            onClick={() => setMenuOpen(false)}
-          >
-            <Icon name="logo" size={44} />
-            <h1 className="sr-only">Skill Blog</h1>
-          </Link>
+          <Logo pathname={pathname} onClick={() => setMenuOpen(false)} />
 
-          <PcNav />
+          <PcNav gnb={GNB} pathname={pathname} />
 
           <div className={styles.btnContainer}>
-            <HamburgerButton isOpen={menuOpen} size={18} onClick={toggleMenu} tabIndex={0} />
+            <HamburgerButton isOpen={menuOpen} size={18} onClick={toggleMenu} />
           </div>
         </div>
-        <MobileNav isOpen={menuOpen} onClick={toggleMenu} />
+        <MobileNav gnb={GNB} pathname={pathname} isOpen={menuOpen} onClick={toggleMenu} />
       </header>
     </>
   );

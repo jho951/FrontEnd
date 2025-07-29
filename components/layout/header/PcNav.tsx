@@ -1,16 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
 
-import { NAV_LINK, NOT_AUTH_LINK } from '@/constants';
-import { LinkButton } from '@/components/common/button';
+import LinkButton from '@/components/common/button/LinkButton';
+
+import { NOT_AUTH_LINK } from '@/constants';
 
 import styles from '@/styles/header/PcNav.module.css';
+import { HeaderNavProps } from '@/types';
 
-export default function PcNav() {
-  const pathname = usePathname();
-  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
-
+export default function PcNav({ gnb, pathname }: HeaderNavProps) {
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
+
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (focusedIndex !== null) {
@@ -21,16 +21,17 @@ export default function PcNav() {
   return (
     <nav className={styles.container} role="navigation" aria-label="주요 사이트 내비게이션">
       <ul role="menubar" className={`${styles.navList} focusable`}>
-        {NAV_LINK.map((item, idx) => (
+        {gnb.map((item, idx) => (
           <li key={item.id} role="none" className={styles.navItem}>
             <LinkButton
               href={item.href}
-              variant="text"
               className={styles.link}
               role="menuitem"
               tabIndex={0}
+              size="md"
               onFocus={() => setFocusedIndex(idx)}
               aria-current={pathname === item.href ? 'page' : undefined}
+              variant="text"
             >
               {item.label}
             </LinkButton>
@@ -41,11 +42,12 @@ export default function PcNav() {
                   <li key={child.href} role="none">
                     <LinkButton
                       href={child.href}
-                      variant="text"
                       className={styles.subLink}
                       role="menuitem"
+                      size="md"
                       tabIndex={0}
                       aria-current={pathname === child.href ? 'page' : undefined}
+                      variant="text"
                     >
                       {child.label}
                     </LinkButton>
@@ -61,14 +63,14 @@ export default function PcNav() {
 
       <ul role="menubar" className={styles.authList}>
         {NOT_AUTH_LINK.map((item, idx) => {
-          const actualIdx = NAV_LINK.length + idx;
+          const actualIdx = gnb.length + idx;
           return (
             <li key={item.id} role="none">
               <LinkButton
                 href={item.href}
-                variant="text"
                 className={styles.link}
                 role="menuitem"
+                size="sm"
                 tabIndex={0}
                 onFocus={() => setFocusedIndex(actualIdx)}
                 aria-current={pathname === item.href ? 'page' : undefined}

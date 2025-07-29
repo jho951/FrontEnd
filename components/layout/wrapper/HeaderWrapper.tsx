@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-
 import Header from '@/components/layout/header/Header';
 
 import { useElementHeight } from '@/hooks/useElementHeight';
@@ -12,9 +11,5 @@ export default function HeaderWrapper() {
     document.documentElement.style.setProperty('--header-offset', `${adHeight}px`);
   }, [adHeight]);
 
-  return (
-    <>
-      <Header />
-    </>
-  );
+  return <Header pathname={''} />;
 }

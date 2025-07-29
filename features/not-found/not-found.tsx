@@ -1,9 +1,10 @@
-// components/NotFound.tsx
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import styles from '@/styles/features/NotFound.module.css';
 import Link from 'next/link';
+import { DIGITS } from '@/constants';
+
+import styles from '@/styles/features/NotFound.module.css';
 
 const FIXED_COLS = 30;
 const FIXED_ROWS = 15;
@@ -12,11 +13,6 @@ const ASPECT_RATIO = 38 / 32;
 const TILE_COLS = 4;
 const TILE_ROWS = 7;
 const DIGIT_SPACING = 2;
-
-const DIGITS: Record<'0' | '4', string[]> = {
-  '4': ['1001', '1001', '1001', '1111', '0001', '0001', '0001'],
-  '0': ['0110', '1001', '1001', '1001', '1001', '1001', '0110'],
-};
 
 export default function NotFoundPage() {
   const svgRef = useRef<SVGSVGElement>(null);

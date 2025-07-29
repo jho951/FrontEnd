@@ -58,15 +58,6 @@
   align-items: center;
 }
 
-.logoContainer {
-  display: flex;
-  align-items: center;
-  line-height: 1;
-
-  transition: transform 0.2s ease;
-  cursor: pointer;
-}
-
 .btnContainer {
   display: none;
 }
@@ -77,7 +68,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .btnContainer {
     display: flex;
     justify-content: flex-end;

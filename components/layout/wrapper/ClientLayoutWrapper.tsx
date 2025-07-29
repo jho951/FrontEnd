@@ -16,7 +16,7 @@ export function ClientLayoutWrapper({ children }: { children: React.ReactNode })
   return (
     <>
       <SkipNav />
-      {shouldRenderHeader && <Header />}
+      {shouldRenderHeader && <Header pathname={pathname} />}
       {children}
       {shouldRenderFooter && <Footer />}
     </>

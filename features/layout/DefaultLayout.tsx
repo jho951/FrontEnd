@@ -2,13 +2,13 @@ import { ClientLayoutWrapper } from '@/components/layout/wrapper/ClientLayoutWra
 import { ThemeProvider, TranslationsProvider } from '@/context';
 
 import { SetHtmlLang } from '@/libs/html/set-html-lang';
-import { getTranslation } from '@/libs/lang/translation';
+import { getMessages } from '@/libs/lang/get-message';
 
 import type { LayoutProps } from '@/types';
 
 export default async function DefaultLayout({ children, params }: LayoutProps) {
   const { lang } = await params;
-  const { common: messages } = getTranslation(lang);
+  const { common: messages } = getMessages(lang);
 
   return (
     <ThemeProvider>

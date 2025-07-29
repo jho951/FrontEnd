@@ -43,6 +43,35 @@ function useScrollLock(lock: boolean) {
   }, [lock]);
 }
 
+function useScrollSyncIndex(
+  containerRef: React.RefObject<HTMLElement | null>,
+  setIndex: (index: number) => void,
+  debounceMs = 100, // ⏱️ 기본값 100ms
+) {
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let timeoutId: number | undefined;
+
+    const handleScroll = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+
+      timeoutId = window.setTimeout(() => {
+        if (!container) return;
+        const newIndex = Math.round(container.scrollLeft / container.offsetWidth);
+        setIndex(newIndex);
+      }, debounceMs);
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [containerRef, setIndex, debounceMs]);
+}
+
 function useScrollDetect(delay = 100): boolean {
   const [isScrolling, setIsScrolling] = useState(false);
 
@@ -68,4 +97,10 @@ function useScrollDetect(delay = 100): boolean {
   return isScrolling;
 }
 
-export { useScrollY, useScrollThresholdReached, useScrollLock, useScrollDetect };
+export {
+  useScrollY,
+  useScrollThresholdReached,
+  useScrollLock,
+  useScrollDetect,
+  useScrollSyncIndex,
+};

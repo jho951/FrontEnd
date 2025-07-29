@@ -22,16 +22,68 @@ export interface LanguageOption {
  */
 export interface Messages {
   header: {
-    /** 홈 메뉴 라벨 */
     home: string;
-    /** 블로그 메뉴 라벨 */
     blog: string;
   };
   home: {
-    /** 홈 페이지 제목 */
     title: string;
-    /** 홈 페이지 설명 */
     description: string;
+  };
+  navigation: {
+    // GNB
+    company: string;
+    programming: string;
+    posting: string;
+    community: string;
+    download: string;
+    legal: string;
+
+    // COMPANY
+    about: string;
+    brand: string;
+    careers: string;
+
+    // PROGRAMMING
+    programmingLang: string;
+    algorithm: string;
+    dataStructure: string;
+    os: string;
+    network: string;
+    security: string;
+    dataBase: string;
+
+    // POSTING
+    newPosting: string;
+    writing: string;
+    tag: string;
+    popular: string;
+
+    // COMMUNITY
+    contact: string;
+    faq: string;
+    linkedIn: string;
+    slack: string;
+    discord: string;
+
+    // DOWNLOAD
+    iphone: string;
+    ipad: string;
+    android: string;
+    mac: string;
+    window: string;
+
+    // LEGAL
+    privacy: string;
+    terms: string;
+    secure: string;
+    esg: string;
+    responsible: string;
+
+    // AUTH
+    myPage: string;
+    logOut: string;
+    signIn: string;
+    signUp: string;
   };
 }
 

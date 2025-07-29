@@ -1,7 +1,7 @@
 interface DropdownProps {
+  id?: string;
   isOpen: boolean;
   children: React.ReactNode;
-  id?: string;
 }
 
 export type { DropdownProps };

@@ -1,10 +1,9 @@
-import { Locale } from '@/types';
+import CsSection from '@/features/home/CsSection';
 
-export default function HomePage({ lang }: { lang: Locale }) {
+export default function HomePage() {
   return (
     <main className="responsive-main">
-      <h1>{lang === 'ko' ? '홈페이지' : 'Home Page'}</h1>
-      <p>{lang === 'ko' ? '어서 오세요!' : 'Welcome!'}</p>
+      <CsSection />
     </main>
   );
 }

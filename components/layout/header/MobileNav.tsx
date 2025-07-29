@@ -2,15 +2,19 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import Icon from '@/components/common/icon/Icon';
-import DropdownWrapper from '@/components/common/animation/DropdownWrapper';
+import LinkButton from '@/components/common/button/LinkButton';
+import DropdownWrapper from '@/components/layout/wrapper/DropdownWrapper';
 
-import { NAV_LINK } from '@/constants';
-import { HeaderMenuOpenProps } from '@/types';
+import { useScrollLock } from '@/hooks/useScroll';
+
+import { MobileNavProps } from '@/types';
 
 import styles from '@/styles/header/MobileNav.module.css';
 
-export default function MobileNav({ isOpen, onClick }: HeaderMenuOpenProps) {
+export default function MobileNav({ gnb, pathname, isOpen, onClick }: MobileNavProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  useScrollLock(isOpen);
 
   const toggle = (idx: number) => {
     setOpenIndex(prev => (prev === idx ? null : idx));
@@ -21,7 +25,7 @@ export default function MobileNav({ isOpen, onClick }: HeaderMenuOpenProps) {
       className={`${styles.container} ${isOpen ? styles.open : styles.closed}`}
       aria-hidden={!isOpen}
     >
-      {NAV_LINK.map((item, idx) => (
+      {gnb.map((item, idx) => (
         <div key={item.id} className={styles.section}>
           {item.children ? (
             <div className={styles.itemWrapper}>
@@ -43,9 +47,17 @@ export default function MobileNav({ isOpen, onClick }: HeaderMenuOpenProps) {
                 <ul id={`mobile-submenu-${idx}`} className={styles.dropdown}>
                   {item.children.map(sub => (
                     <li key={sub.href}>
-                      <Link href={sub.href} className={styles.link} onClick={onClick}>
+                      <LinkButton
+                        href={sub.href}
+                        className={styles.link}
+                        role="menuitem"
+                        aria-current={pathname === item.href ? 'page' : undefined}
+                        onClick={onClick}
+                        variant="text"
+                        size="md"
+                      >
                         {sub.label}
-                      </Link>
+                      </LinkButton>
                     </li>
                   ))}
                 </ul>

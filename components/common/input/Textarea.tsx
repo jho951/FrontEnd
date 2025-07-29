@@ -1,3 +1,5 @@
+'use client';
+
 import { forwardRef, useRef, useEffect } from 'react';
 import type { ForwardedRef } from 'react';
 
